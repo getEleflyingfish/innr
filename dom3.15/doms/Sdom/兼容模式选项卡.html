@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+       .tabs-wrap .on1 { 
+          color: red;
+       }
+       .tabs-wrap .on2 { 
+          color: red;
+       }
+       .tabs-wrap .on3 { 
+          color: red;
+       }
+</style>
+<body>
+  <div class="tabs-wrap">
+    <ul>
+      <li class="tabs-btn on1">
+        a
+      </li>
+      <li class="tabs-btn">
+        b
+      </li>
+      <li class="tabs-btn">
+        C
+      </li>
+    </ul>
+    <div class="tabs-item">dasd</div>
+    <div class="tabs-item">231dasdasda23</div>
+    <div class="tabs-item">2312das3</div>
+  </div>
+  <div class="tabs-wrap">
+    <ul>
+      <li class="tabs-btn">
+        a
+      </li>
+      <li class="tabs-btn on2">
+        b
+      </li>
+      <li class="tabs-btn">
+        C
+      </li>
+    </ul>
+    <div class="tabs-item">2312dsa3</div>
+    <div class="tabs-item">231sdsadsadsa23</div>
+    <div class="tabs-item">23dsadsa123</div>
+  </div>
+  <div class="tabs-wrap">
+    <ul>
+      <li class="tabs-btn">
+        a
+      </li>
+      <li class="tabs-btn on3">
+        b
+      </li>
+      <li class="tabs-btn">
+        C
+      </li>
+    </ul>
+    <div class="tabs-item">2312dsa3</div>
+    <div class="tabs-item">231sdsadsadsa23</div>
+    <div class="tabs-item">23dsadsa123</div>
+  </div>
+</body>
+
+<script>
+
+
+
+
+function tabsChange(config) {
+    var tabsWrap = document.querySelectorAll('.tabs-wrap');
+    var _loop_1 = function (i) {
+        var tabsBtn = tabsWrap[i].querySelectorAll('.tabs-btn');
+        var tabsItem = tabsWrap[i].querySelectorAll('.tabs-item');
+        var _loop_2 = function (j) {
+            tabsItem[j + 1] ? tabsItem[j + 1].style.display = 'none' : '';
+            tabsBtn[j].addEventListener('click', function () {
+                for (var k = 0; k < tabsBtn.length; k++) {
+                    tabsBtn[k].className=config[i].defaultClass;
+                    tabsItem[k].style.display = 'none';
+                }
+                tabsBtn[j].className=config[i].defaultClass+' '+config[i].changeClass;
+                tabsItem[j].style.display = 'block';
+            });
+        };
+        for (var j = 0; j < tabsBtn.length; j++) {
+            _loop_2(j);
+        }
+    };
+    for (var i = 0; i < tabsWrap.length; i++) {
+        _loop_1(i);
+    }
+}
+
+
+
+tabsChange([
+    {
+      defaultClass: "sd02",//默认class
+      changeClass: 'on1'//第一个选项卡要切换的class
+    },
+    {
+      defaultClass: "sd02",//默认class
+      changeClass: 'on2'//第二个选项卡要切换的class
+    }, {
+      defaultClass: "sd02",//默认class
+      changeClass: 'on3'//第三个选项卡要切换的class......
+    }])
+
+</script>
+
+</html>

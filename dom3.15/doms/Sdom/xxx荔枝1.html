@@ -11,25 +11,63 @@
 <link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
 <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
 <script type="text/javascript" src="js/swiper.min.js"></script>
-<script type="text/javascript" src="js/base.js"></script>
+
 </head>
 
 <body>
 
 
-
+<div>
+      <button onclick="fun1()"> 按钮1 </button>
+      <button onclick="fun2()"> 按钮2 </button>
+      <p id="domo"></p>
+</div>
 
 
 
 <script>
 	
-      var a = new Set();
-      a.add("foo");
 
-      a.has("foo");//
-      a.has("aad");
-      console.log(  a.has("foo"))
-      console.log(  a.has("aad"))
+
+
+
+
+// 排序 sort()  按照ASCII顺序对数组(字符和数字)进行升序排序  
+  var arrays = ['1huawei1','2zhongxin2','5vivo5','0xiaomi2','9china8'];
+  arrays.sort();
+
+  console.log(arrays); //["0xiaomi2", "1huawei1", "2zhongxin2", "5vivo5", "9china8"]
+
+
+
+  //利用 sort() + reverse() 对数组进行降序排序 
+    arrays.reverse(); 
+    console.log(arrays);  // ["9china8", "5vivo5", "2zhongxin2", "1huawei1", "0xiaomi2"] 
+
+    //比值函数 ？？  
+    function abbJia(a,b){ 
+          return a-b;
+    }
+    abbJia(5,4); 
+    console.log(   abbJia(5,4)   ) // 1          
+
+    /* -------------------- */
+            var arr = ['1000','19','14','15','266','25'];
+            var showtext = document.querySelector("#domo");
+            showtext.innerHTML = arr;
+
+     function fun1 () {                            //1000,14,15,19,25,266   只看头一位
+            arr.sort();
+            showtext.innerHTML = arr;  
+     }
+     function fun2(){ 
+           arr.sort( function(a,b){return a-b} )     //14,15,19,25,266,1000 所有都看
+           showtext.innerHTML = arr;  
+     }  
+   //以随机数排序
+     var points = [40,100,1,5,25,10] ; 
+       points.sort( function(a,b){ return 0.5 - Math.random() } ) 
+       console.log(points);
 </script>
 
 </body>
