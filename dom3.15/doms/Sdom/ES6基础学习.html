@@ -14,6 +14,7 @@
     <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
     <script type="text/javascript" src="js/swiper.min.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
 
 <body>
@@ -561,14 +562,43 @@
         //这里需要注意的是两个方法中间不要写逗号了，还有这里的this指类本身，还有要注意return 的用法。
 
 
-      
 
-        /* 
-         
-         还剩最后一点，
-         https://blog.csdn.net/pyycsd/article/details/78931897
+
+        /*
+         第18节：模块化操作
+
+        学习地址：ES6基础 https://blog.csdn.net/pyycsd/article/details/78931897
          */
-         
+        //ES6为我们增加了模块话操作。模块化操作主要包括两个方面。 
+        //export : 负责进行模块化，也是模块的输出。
+        //import : 负责把模块引，也是模块的引入操作。
+        //export的用法： 
+        //export可以让我们把变量，函数，对象进行模块话，提供外部调用接口，让外部进行引用。先来看个最简单的例子，把一个变量模块化。我们新建一个temp.js文件，然后在文件中输出一个模块变量。
+
+        //  export var ab = 'jspang';
+        // import { ab } from './temp.js';
+        // console.log(ab);  
+        //这就是一个最简单的模块的输出和引入。
+
+        // --多变量的输出
+        //这里声明了3个变量，需要把这3个变量都进行模块化输出，这时候我们给他们包装成对象就可以了。
+     /*    var da = 'qweqweqasd';
+        var db = '技术';
+        var dc = 'web';
+        export { da, db, dc }
+        //--函数的模块化输出
+        export function add(a, b) {
+            return a + b;
+        } */
+
+        // as的用法
+        //有些时候我们并不想暴露模块里边的变量名称，而给模块起一个更语义话的名称，这时候我们就可以使用as来操作。 
+   /*      export {
+                x as da,
+                y as db,
+                z as dc
+        } */
+
     </script>
 
 </body>
