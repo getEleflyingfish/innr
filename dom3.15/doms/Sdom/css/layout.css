@@ -9,7 +9,7 @@
 
 .w1200{ width:1200px; margin:0 auto;}
 
-body {color:#000; background:#f1f3f8; font:12px/20px 'Microsoft YaHei', arial, sans-serif; min-width:1200px;}/*最小宽度1200px是为了适应移动端预览*/
+body {color:#000; background:#fff; font:12px/20px 'Microsoft YaHei', arial, sans-serif; min-width:1200px;}/*最小宽度1200px是为了适应移动端预览*/
 a{ color:#000;}
 input{ outline: none;}
 a:hover{color:#fd711c;}
