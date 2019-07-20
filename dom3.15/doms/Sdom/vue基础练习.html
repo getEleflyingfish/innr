@@ -16,27 +16,48 @@
   <script type="text/javascript" src="js/base.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 </head>
+
 <style>
   .hr {
-    background: pink;
-    height: 2px;
+    background: #d8d8d8;
+    height: 1px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 0 17px 3px #cccccc;
+    box-shadow: 0 2px 7px 0px #02350c;
     margin: 20px 0;
+  }
+
+  html {
+    overflow-x: inherit;
   }
 
   body {
     text-align: left;
     margin-left: 35%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+
   }
 </style>
 
 <body>
 
-
-
+  <table>
+    <tr>
+      <td>要点：</td>
+    </tr>
+    <tr>
+      <td>
+        computed -----计算属性
+        计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
+      </td>
+    </tr>
+  </table>
+  <div class="hr"></div>
   <div id="app1"> {{ message }}</div>
   <script>
     var app1 = new Vue({
@@ -320,7 +341,7 @@
     一些指令能够接收一个“参数”，在指令名称之后以冒号表示。例如，v-bind 指令可以用于响应式地更新 HTML 特性：</br>
     如：
   </p>
-  <span id="app9" :innerHTML="meet" v-html="data">...</span>
+  <span id="app9" :innerHTML="meet" v-html="meet">...</span>
   <script>
     new Vue({
       el: "#app9",
@@ -353,37 +374,358 @@
       b: 2
     }
     var key = 'a';
-    console.log(obj1[key])
+    var kex = 'b';
+    console.log(obj1[key], obj1[kex])
   </script>
   <p> 计算属性和侦听器</p>
   <P> 计算属性</P>
   <P>模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护</P>
   <P>基础例子</P>
   <div id="app11">
-    <ul>
-      <li></li>
-    </ul>
-  </div> 
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  </div>
 
   <script>
+    var app11 = new Vue({
+      el: "#app11",
+      data: {
+        message: 'hello vue.js'
 
+      },
+      computed: {
+        //computed  计算属性
+        // 计算属性的 getter  
+        reversedMessage: function () {
+          // `this` 指向 vm 实例  
+          // split('')方法用于把一个字符串分割成字符串数组
+          //reverse() 方法用于颠倒数组中元素的顺序。
+          // join() 方法用于把数组中的所有元素放入一个字符串。 元素是通过指定的分隔符进行分隔的。
+          return this.message.split('').reverse().join('')
+        }
+      }
+    }) 
+  </script>
+  <div id="app12">
+    {{  firstName  }}</br>
+    {{  lastName  }}</br>
+    {{  fullName  }}</br>
+  </div>
+
+  <script>
+    var app12 = new Vue({
+      el: "#app12",
+      data: {
+        firstName: 'Foo',
+        lastName: 'Bar'
+      },
+      computed: {
+        //计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
+        fullName: {
+          // getter
+          get: function () {
+            return this.firstName + ' ' + this.lastName
+          },
+          // setter
+          set: function (newValue) {
+            // alert( newValue)
+            var names = newValue.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[names.length - 1]
+          }
+
+        }
+
+
+      }
+
+    })
   </script>
 
+  <h1>侦听器 </h1>
+  <strong> 虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch
+    选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。</strong>
+  <div id="app13">
+
+    <p>
+      问一个是/否的问题:
+      <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+  </div>
+  <script>
+
+    var app13 = new Vue({
+      el: "#app13",
+      data: {
+        question: '',
+        answer: '猜猜看'
+      },
+      watch: {
+        // 如果 `question` 发生改变，这个函数就会运行 
+        question: function (newquestion, oldquestion) {
+          this.answer = '更新了',
+            this.debouncedGetAnswer()
+        }
+      },
+      created: function () {
+        /*  
+             一个vue实例被生成后还要( 绑定 v-bind 简写 ： )到某个html元素上
+             之后还要进行编译，然后再插入到document中,每一个阶段都会有一个钩子函数，  
+             一般可以在created函数中调用ajax获取页面初始化所需的数据。 
+             什么是生命周期？
+            用通俗的语言来说，就是Vue中实例或者组件从创建到消灭中间经过的一系列过程。
+             created:在模板渲染成htmlF前调用，即通常初始化某些属性值，然后再渲染成视图。
+             mounted:在模板渲染成html后调用，通常是初始化页面完成后，再对html的dom节点进行一些需要的操作。
+        */
+        // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
+        // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
+        // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+        // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
+        // 请参考：https://lodash.com/docs#debounce
+        //this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+      }
+      /*       ,
+            methods: {
+              getAnswer: function () {
+                if (this.question.indexOf('?') === -1) {
+                  this.answer = 'Questions usually contain a question mark. ;-)'
+                  return
+                }
+                this.answer = 'Thinking...'
+                var vm = this
+                axios.get('https://yesno.wtf/api')
+                  .then(function (response) {
+                    vm.answer = _.capitalize(response.data.answer)
+                  })
+                  .catch(function (error) {
+                    vm.answer = 'Error! Could not reach the API. ' + error
+                  })
+              }
+            } */
+
+    })
+  </script>
+  <div> 绑定 HTML Class </div>
+  <strong> 对象语法</strong>
+  <div id="app14" v-bind:class=" objclass "> mmmmmmmmmmmm</div>
+  <script>
+    var app14 = new Vue({
+      el: '#app14',
+      data: {
+        objclass: {
+          isActive: true,
+          error: null
+        }
+      },
+      component: {  //component  绑定一个返回对象的计算属性。这是一个常用且强大的模式：
+        objclass: function () {
+          return {
+            active: this.isActive && !this.error,
+            'text-dangge': this.error && this.error.type === 'fatal'
+          }
+        }
+      }
+    })
+  </script>
+  <strong> 数组语法</strong>
+  <p> 两个CSS名字可以使用三元,选择其一</p>
+  <p> 我们可以把一个数组传给 v-bind:class，以应用一个 class 列表：</p>
+  <div id="app15" :class="[isActive ? a : b]"> .....</div>
+  <script>
+    var app15 = new Vue({
+      el: '#app15',
+      data: {
+        isActive: true,    //依赖isActive 
+        a: 'a123',
+        b: 'b123'
+      }
+    })
+  </script>
+  <strong> 数组语法</strong>
+  <p> class有多个条件时，可以在数组语法中使用对象语法</p>
 
 
+  <div id="app16" :class="[{'on1':isActive },a1,b1]"> .....</div>
+  <script>
+    var app16 = new Vue({
+      el: '#app16',
+      data: {
+        isActive: true,    //依赖isActive 
+        a1: 'xi',
+        b1: 'li'
+      },
 
+    })
+  </script>
+  <p>绑定内联样式</p>
+  <div id="app17" :style="direct"> kkss.</div> <!-- //直接绑定到一个样式对象通常更好，这会让模板更清晰： -->
+  <script>
+    var app17 = new Vue({
+      el: '#app17',
+      data: {
 
+        direct: {
+          color: 'red',
+          fontSize: 30 + 'px',
+          transform: 'translateX(10%)'
+        }
+      }
 
+    })
+  </script>
 
+  <div> 条件渲染</div>
+  <div>v-if 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 truthy 值的时候被渲染。</div>
+  <h1 id="a18" v-if="awesome"> 指令的表达式返回 truthy 值的时候才能看 到 ????</h1>
+  <h1 id="" v-else="elome"> 指令的表达式返回 truthy 值的时候才能看 到 ?!!!!</h1>
 
+  <script>
+    var a18 = new Vue({
+      el: "#a18",
+      data: {
+        awesome: true,
+        elome: true
+      }
+    })
+  </script>
 
+  <div id="a19">
+    <template v-if="loginType==='username' ">
+      <label for="">Userna</label>
+      <input type="text" placeholder="Enter your username">
+    </template>
+    <template v-else>
+      <label for="">Email</label>
+      <input type="text" placeholder="Enter your email">
+    </template>
+    <input @click="changekk" type="button" value="toggle longin type">
+  </div>
 
+  <script>
+    var a19 = new Vue({
+      el: "#a19",
+      data: {
+        loginType: 'username'
+      },
+      methods: {
+        changekk: function () {
 
+          /*   if (this.loginType === 'username') {
+              this.loginType = 'email'
+            } else {
+              this.loginType = 'username'
+            }    */
+          //还可以用三元
+          return this.loginType === 'username' ? this.loginType = 'email' : this.loginType = 'username'
 
+        }
+      }
+    })
+  </script>
+  <p> 这样也不总是符合实际需求，所以 Vue 为你提供了一种方式来表达“这两个元素是完全独立的，不要复用它们”。只需添加一个具有唯一值的 key 属性即可：</p>
+  <div id="a20">
+    <template v-if="loginType==='username' ">
+      <label for="">Userna</label>
+      <input type="text" placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+      <label for="">Email</label>
+      <input type="text" placeholder="Enter your email" key="amail-input">
+    </template>
+    <input @click="changekktow" type="button" value="toggle longin type">
+  </div>
 
+  <script>
+    var a20 = new Vue({
+      el: "#a20",
+      data: {
+        loginType: 'username'
+      },
+      methods: {
+        changekktow: function () {
 
+          if (this.loginType === 'username') {
+            this.loginType = 'email'
+          } else {
+            this.loginType = 'username'
+          }
+        }
+      }
+    })
+  </script>
+  <h1> 列表渲染</h1>
+  <p> 用 v-for 把一个数组对应为一组元素</p>
+  <p> 我们可以用 v-for 指令基于一个数组来渲染一个列表。v-for 指令需要使用 item in items 形式的特殊语法，其中 items 是源数据数组，而 item 则是被迭代的数组元素的别名。</p>
 
+  <ul id="a21">
+    <li v-for="(itin,index) in itarr">
+      <!-- 你也可以用 of 替代 in 作为分隔符，因为它更接近 JavaScript 迭代器的语法： -->
+      <!-- 其中 items 是源数据数组，而 item 则是被迭代的数组元素的别名。 -->
+      {{par}}-{{index}}--{{itin.age }}
+    </li>
+  </ul>
+  <script>
+    var a21 = new Vue({
+      el: "#a21",
+      data: {
+        par: 'xxxr',
+        itarr: [
+          { age: 'ffx1' },
+          { age: 'ffx2' },
+          { age: 'ffx3' },
+          { age: 'ffx4' },
+          { age: 'ffp54' }
 
+        ]
+      }
+    })
+  </script>
+  <h1>在 v-for 里使用对象</h1>
+  <ul id="a22">
+    <li v-for="(value ,name,index) in objcc">
+      <!-- 你也可以提供第二个的参数为 property 名称 (也就是键名)：name -->
+      <!-- 还可以用第三个参数作为索引：index -->
+      {{index}}. {{name}}--{{value}}
+    </li>
+  </ul>
+  <script>
+    var a22 = new Vue({
+      el: "#a22",
+      data: {
+        objcc:
+        {
+          title: '今天todo',
+          name: 'haoren',
+          timer: '2019',
+        }
+      }
+    })
+  </script>
+
+  <h1>key：</h1>
+  <ul id="a23">
+    <li v-for="item in items" :key="item.id">
+      <!-- 你也可以提供第二个的参数为 property 名称 (也就是键名)：name -->
+      <!-- 还可以用第三个参数作为索引：index -->
+      {{item.age}}
+    </li>
+  </ul>
+  <script>
+    var a23 = new Vue({
+      el: "#a23",
+      data: {
+        items: [
+          { age: 'three1' },
+          { age: 'three11' },
+          { age: 'three12' },
+          { age: 'three13' },
+          { age: 'three14' }
+        ]
+
+      }
+    })
+  </script>
 
 
 
