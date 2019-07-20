@@ -592,11 +592,11 @@
 
   <div id="a19">
     <template v-if="loginType==='username' ">
-      <label for="">Userna</label>
+      <label for="">Userna-one</label>
       <input type="text" placeholder="Enter your username">
     </template>
     <template v-else>
-      <label for="">Email</label>
+      <label for="">Email-one</label>
       <input type="text" placeholder="Enter your email">
     </template>
     <input @click="changekk" type="button" value="toggle longin type">
@@ -617,7 +617,8 @@
               this.loginType = 'username'
             }    */
           //还可以用三元
-          return this.loginType === 'username' ? this.loginType = 'email' : this.loginType = 'username'
+          // return this.loginType === 'username' ? this.loginType = 'email' : this.loginType = 'username'
+          return this.loginType = this.loginType === 'username' ? 'email' : 'username'
 
         }
       }
