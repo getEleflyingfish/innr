@@ -727,7 +727,96 @@
       }
     })
   </script>
+  <b> data属性的三种写法</br>
+    1）在简单的Vue实例中，没什么区别，因为你app对象不会被复用。</br>
+    2）但是在组件中，因为可能在多处调用同一组件，所以为了不让多处的组件共享同一data对象，只能返回函数。</br>
+  </b>
+  <h1>表单输入绑定：基础用法 文本</h1>
+  <div id="a24">
+    <input v-model="message" placeholder="tips">
+    <!-- <input :value="message"  > -->
+    <p> {{message }} </p>
+  </div>
+  <script>
+    var a24 = new Vue({
+      el: "#a24",
+      data() {
+        return {
+          message: 'tips..~~'
+        }
 
+      }
+    })
+  </script>
+
+
+  <h1>表单输入绑定：基础用法 多行 文本</h1>
+  <div id="a25">
+    <b> </b>
+    <p> {{message }} </p>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+  </div>
+  <script>
+    var a25 = new Vue({
+      el: "#a25",
+      data() {
+        return {
+          message: '多行文本..~~'
+        }
+
+      }
+    })
+  </script>
+  <h1>多个复选框，绑定到同一个数组：</h1>
+  <!--   <div id='example-3'>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames"><label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames"> <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames"><label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+  </div>
+  <script>
+    new Vue({
+      el: '#example-3',
+      data: {
+        checkedNames: []
+      }
+    }) -->
+  <div id='a26'>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames"><label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames"> <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames"><label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+  </div>
+  <script>
+    var a26 = new Vue({
+      el: '#a26',
+      data: {
+        checkedNames: []
+      }
+    }) 
+  </script>
+  <div> 推荐像上面这样提供一个值为空的禁用选项。</div>
+  <div id="example-5">
+    <select v-model="selected">
+      <option disabled value="">请选择</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#example-6',
+      data: {
+        selected: []
+      }
+    })
+  </script>
 
 
 
