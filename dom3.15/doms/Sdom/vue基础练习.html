@@ -798,22 +798,210 @@
       }
     }) 
   </script>
-  <div> 推荐像上面这样提供一个值为空的禁用选项。</div>
-  <div id="example-5">
-    <select v-model="selected">
-      <option disabled value="">请选择</option>
-      <option>A</option>
-      <option>B</option>
-      <option>C</option>
-    </select>
-    <span>Selected: {{ selected }}</span>
+
+
+  <style>
+    .red {
+      color: red;
+    }
+
+    input {
+      border: 1px solid #cccccc;
+      width: 200px;
+      height: 30px;
+    }
+
+    .a27div {
+      display: none;
+    }
+  </style>
+  <hr class="hr">
+  <b>Vue 选项卡 </b>
+
+  <div id="a27">
+    <input type="button" :value="item.title" :class="{red:i === index}" @click=onchang(i) v-for="item,i in dataList">
+    <div :style="{ display:j===index?'block':'none'}" class="a27div" v-for="item,j in dataList">
+      <p v-for="opth in item.list">{{opth.subTitle }}</p>
+
+    </div>
+
+  </div>
+  <script>
+
+    let dataList = [
+      {
+        title: '新闻',
+        list: [
+          {
+            subTitle: '1浙大女生遇害案',
+
+          }, {
+            subTitle: '1第二学士不再招生'
+          }
+        ]
+      },
+      {
+        title: '娱乐',
+        list: [
+          {
+            subTitle: '2某某出轨了',
+
+          }, {
+            subTitle: '2红黄蓝外教猥亵'
+          }
+        ]
+      },
+      {
+        title: '体育',
+        list: [
+          {
+            subTitle: '3姚明退休啦',
+
+          }, {
+            subTitle: '3易建联defen'
+          }
+        ]
+      }
+
+    ]
+
+    var a27 = new Vue({
+      el: '#a27',
+      data: {
+        dataList,
+        index: 0
+      },
+      methods: {
+        onchang: function (i) {
+          this.index = i
+        }
+      }
+    })
+  </script>
+  <hr class="hr">
+  <b>Vue 筛选 </b>
+  <style>
+    .on {
+      color: blue;
+    }
+
+    mark {
+      margin: 0 10px;
+    }
+  </style>
+  <div id="a28">
+    <section class="section">
+      <nav id="choose">
+        你的选择：
+        <!-- <mark> 锤子<a href="javascript:;"> x </a></mark> -->
+        <mark @click="removechang(key)" v-for="screen,key in choose">
+          {{ screen}}
+          <a href="javascript:;"> x </a>
+
+        </mark>
+
+      </nav>
+      <ul id="type">
+        <li v-for="screen,index in vdata">
+          {{screen.title }}：
+          <a href="javascript:;" v-for="opin,i in screen.list" :class="{ on:screen.index===i}"
+            @click="chooseing(opin,index,i)"
+            style="width: 100px; height:30px;line-height: 30px; border: 1px solid #cccccc;margin: 2px;text-align: center">
+            {{opin }}</a>
+
+        </li>
+      </ul>
+    </section>
+  </div>
+  <script>
+    let datasai = [
+      {
+        title: '品牌',
+        list: ["华为", "小米", "VIVO", "魅族", "锤子", "乐视", "苹果"]
+      },
+      {
+        title: '尺寸',
+        list: ["3.0英寸一下", "3.3-3.9英寸", "4.0-4.5英寸", "4.6-4.9英寸", "5.0-5.5英寸", "6.0英寸以上"]
+      },
+      {
+        title: '系统',
+        list: ["安卓", "android", "苹果", "ios", "微软", "其他"]
+      },
+      {
+        title: '网络',
+        list: ["联通3g ", "双卡单4g", "双卡双4g", "联通4g", "电信4g", "移动4g"]
+      },
+    ]
+
+    //处理data   --datasai  
+    datasai.forEach(screen => screen.index = -1)
+    console.log(datasai)
+    var a28 = new Vue({
+      el: "#a28",
+      data: {
+        vdata: datasai,
+        choose: {}
+      },
+      methods: {
+        chooseing: function (opin, index, i) {
+          console.log(opin)
+          // this.choose[index]=opin
+          this.$set(this.choose, index, opin)
+          this.vdata[index].index = i
+        },
+        removechang: function (key) {
+
+          console.log(this.choose)
+          console.log(key)
+          this.$delete(this.choose, key)
+          this.vdata[key].index = -1
+        }
+      }
+
+    })
+
+  </script>
+
+  <hr class="hr">
+  <b>Vue 好友列表收缩 </b>
+
+  <div id="a29">
+    <div class="list">
+      <div v-for="itemhy in qq">
+        <h2>{{ itemhy.title }}</h2>
+        <ul>
+          <li v-for="opins in itemhy.list"> {{opins }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <script>
-    new Vue({
-      el: '#example-6',
+
+
+    let datafid = [
+      {
+        title: '品牌',
+        list: ["华为", "小米", "VIVO", "魅族", "锤子", "乐视", "苹果"]
+      },
+      {
+        title: '尺寸',
+        list: ["3.0英寸一下", "3.3-3.9英寸", "4.0-4.5英寸", "4.6-4.9英寸", "5.0-5.5英寸", "6.0英寸以上"]
+      },
+      {
+        title: '系统',
+        list: ["安卓", "android", "苹果", "ios", "微软", "其他"]
+      },
+      {
+        title: '网络',
+        list: ["联通3g ", "双卡单4g", "双卡双4g", "联通4g", "电信4g", "移动4g"]
+      },
+    ]
+
+    var a29 = new Vue({
+      el: "#a29",
       data: {
-        selected: []
+        qq: datafid
       }
     })
   </script>
@@ -825,15 +1013,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
+  <div style="height: 300px"></div>
 
 
 
