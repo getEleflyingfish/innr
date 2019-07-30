@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+      <style>
+            * {
+                  padding: 0;
+                  margin: 0;
+            }
+
+            ul {
+                  list-style: none;
+            }
+
+            #div {
+                  width: 300px;
+                  height: 100px;
+                  margin: 100px auto;
+                  border: 1px solid #ff0000;
+                  position: relative;
+                  overflow: hidden;
+            }
+
+            #div ul {
+                  position: absolute;
+                  height: 100px ;
+                  left: 0;
+            }
+
+            #div ul li {
+                  width: 300px;
+                  height: 100px;
+                  line-height: 100px;
+                  text-align: center;
+                  float: left ;
+            }
+      </style>
+
+      <input type="button" value="上 ">
+      <input type="button" value="下">4
+      <div id='div'>
+            <ul>
+                  <li>恕我直言，我不是针对谁，我是说在座的各位都是垃圾_1</li>
+                  <li>恕我直言，我不是针对谁，我是说在座的各位都是垃圾_2</li>
+                  <li>恕我直言，我不是针对谁，我是说在座的各位都是垃圾_3</li>
+                  <li>恕我直言，我不是针对谁，我是说在座的各位都是垃圾_4</li>
+            </ul>
+      </div>
+      <script>
+            window.onload = function () {
+                  var oDiv = document.getElementById("div");
+                  var oUl = oDiv.getElementsByTagName("ul")[0];
+                  var oLi = oUl.getElementsByTagName("li");
+                  var oInput = document.getElementsByTagName('input');
+                  // oUl.innerHTML += oUl.innerHTML;
+                  oUl.style.height = oLi[0].offsetHeight * oLi.length + "px";  //获取oUl总长度
+                  console.log(oLi[0].offsetHeight)  //单个LI高度100
+                  console.log(oLi.length)  //个数
+                  var iSeep = -2;
+                  var tamer = null;
+
+
+                  clearInterval(tamer);
+                  function starMove(nume) {
+                        tamer = setInterval(function () {
+
+                              oUl.style.top = oUl.offsetTop + iSeep + "px";
+                              if (-oUl.offsetTop >= oUl.offsetHeight / 2) {
+                                    oUl.style.top = "0px";
+                              } else if (oUl.offsetTop > 0) {
+                                    oUl.style.top = -oUl.offsetHeight / 2 + "px";
+                              }
+                        }, nume)
+                  }
+                  starMove('25');
+                  oDiv.onmouseover = function () {
+                        clearInterval(tamer);
+                  }
+                  oDiv.onmouseout = function () {
+
+                        starMove('25');
+                  }
+                  oInput[0].onclick = function () {
+                        iSeep = -2;
+                  }
+                  oInput[1].onclick = function () {
+                        iSeep = 2;
+                  }
+            }
+      </script>
+      </head>
+
+      <body>
+
+      </body>
+
+</html>
