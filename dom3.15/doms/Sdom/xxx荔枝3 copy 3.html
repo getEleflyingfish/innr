@@ -30,6 +30,7 @@
             .ol li.on {
                   width: 30px !important;
                   height: 30px!important;
+                  overflow: hidden;
             }
       </style>
 
@@ -39,7 +40,7 @@
 
             window.onload = function () {
                   movement("ol", "20", "5", "15", "15", "50", "000000", "left", "100");
-                  movement("xl", "20", "5", "15", "15", "50", "000000", "left", "100");
+                  movement("xl", "20", "5", "15", "15", "50", "ccc", "left", "100");
                   
 
             }
@@ -50,7 +51,9 @@
                   var ul = document.createElement("ul");//创建一个ul 
                   document.body.appendChild(ul);
                   ul.classList.add(eventWap)
-                  var oUl = document.getElementsByClassName(eventWap)[0];
+                  var oUl = document.getElementsByClassName(eventWap)[0]; 
+                  oUl.style.display = "block";
+                  oUl.style.overflow = "hidden";
                   var ouls = numr;
                   var str = '';
                   for (var i = 0; i < ouls; i++) {
