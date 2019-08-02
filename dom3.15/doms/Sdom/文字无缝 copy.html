@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+      <style>
+            * {
+                  padding: 0;
+                  margin: 0;
+            }
+
+            ul {
+                  list-style: none;
+            }
+
+            #div {
+                  width: 300px;
+                  height: 100px;
+                  margin: 100px auto;
+                  border: 1px solid #ff0000;
+                  position: relative;
+                  overflow: hidden;
+            }
+
+            #div ul {
+                  position: absolute;
+                  height: 100px;
+                  left: 0;
+            }
+
+            #div ul li {
+                  width: 300px;
+                  height: 100px;
+                  line-height: 100px;
+                  text-align: center;
+                  float: left;
+            }
+      </style>
+
+      <input type="button" value="上 ">
+      <input type="button" value="下">
+      <div id='div'>
+            <ul>
+                  <li>恕我直言，我不是针对谁_1</li>
+                  <li>恕我直言，我不是针对谁，_2</li>
+                  <li>恕我直言，我不是针对谁，_3</li>
+                  <li>恕我直言，我不是针对谁，_4</li>
+            </ul>
+      </div>
+      <script>
+            var oDiv = document.querySelector("#div");
+            var oUl = oDiv.querySelector("ul");
+            var oLi = document.querySelectorAll("#div li");
+            var oInput = document.querySelectorAll('input');
+            oUl.style.height = oLi[0].offsetHeight * oLi.length + "px";  // 1.获取ul 总高度
+            var innes = -2;
+            var cletimer = null;
+            function mmmius(numx) {
+                  cletimer = setInterval(function () {
+                        oUl.style.top = oUl.offsetTop + innes + "px"; 
+                        if (-oUl.offsetTop >= oUl.offsetHeight) {
+                              oUl.style.top = "0px";
+                        } else if (oUl.offsetTop > 0) {
+                              oUl.style.top = -oUl.offsetHeight + "px";
+                        }
+                  }, numx)
+            }
+            mmmius("60")
+            //鼠标移入    onmouseover
+            //鼠标移出    onmouseout  
+            oDiv.onmouseover = function () {
+                  clearInterval(cletimer)
+            }
+            oDiv.onmouseout = function () {
+                  mmmius("60")
+            }
+            oInput[0].onclick = function () {
+                  innes = -2;
+            }
+            oInput[1].onclick = function () {
+                  innes = 2;
+            }
+      </script>
+
+      <body>
+      </body>
+
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+
+
+
+
+
+      <script>
+
+            window.onload = function () {
+                  var words = document.getElementById('words');
+                  var html = words.innerText.replace(/(\S)/g, function (key) {
+                        var r = parseInt(Math.random() * 255);
+                        var g = parseInt(Math.random() * 255);
+                        var b = parseInt(Math.random() * 255);
+                        var color = 'rgb(' + r + ',' + g + ',' + b + ')';
+                        return '<font color="' + color + '">' + key + '</font>';
+                  });
+                  words.innerHTML = html;
+            }
+      //-->
+      </script>
+
+      <div id="words">这是一行彩色文字，每次刷新颜色都会不同！<div>
+
+</body>
+
+</html>

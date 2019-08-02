@@ -964,21 +964,39 @@
 
   <hr class="hr">
   <b>Vue 好友列表收缩 </b>
+  <style>
+    .list h2 {
+      width: 200px;
+      text-align: center;
+      font-size: 20px;
+      line-height: 30px;
+    }
 
+    .list h2.active {
+      background: rgba(31, 52, 45, .8);
+      color: #fff;
+    }
+
+    .list ul {
+      display: none;
+    }
+
+    .list .show {
+      display: block
+    }
+  </style>
   <div id="a29">
     <div class="list">
-      <div v-for="itemhy in qq">
-        <h2>{{ itemhy.title }}</h2>
-        <ul>
-          <li v-for="opins in itemhy.list"> {{opins }}</li>
+      <div v-for="itemhy,i in qq">
+        <h2 :class="{active:i===index}" @click="changeShow(i)">{{ itemhy.title }}</h2>
+        <ul :class="{show:i===index}">
+          <li v-for="opins in itemhy.list"> {{opins}}</li>
         </ul>
       </div>
     </div>
   </div>
 
   <script>
-
-
     let datafid = [
       {
         title: '品牌',
@@ -1001,15 +1019,109 @@
     var a29 = new Vue({
       el: "#a29",
       data: {
-        qq: datafid
+        qq: datafid,
+        index: ''
+      },
+      methods: {
+        changeShow: function (index) {
+          this.index = this.index === index ? "" : index
+        }
       }
     })
   </script>
 
+  <hr class="hr">
+  <b>Vue 计算属性</b>
+
+  <div id="a30">
+    <p>{{ message}}</p>
+    <p>{{ reverseJon}}</p>
+    <p>{{ listMap}}</p>
+  </div>
+  <script>
+
+    var a30 = new Vue({
+      el: "#a30",
+      data: {
+        message: "jiayouxuexi",
+        list: [1, 2, 3, 4, 5, 6, 7]   //在模板里把数组每一项*2，并且过滤小于10的
+      },
+      computed: {
+        //  计算属性挂载实例上 
+        //  计算属性对应的函数this都指向实例 
+        //  计算属性会把结果缓存
+        reverseJon: function () {
+          return this.message.split('').reverse().join('')
+
+        },
+        listMap: function () {
+          return this.list.map(item => item * 2).filter(item => item < 10)
+        }
+
+      }
+
+    })
+  </script>
+
+  <hr class="hr">
+  <b>Vue 百度音乐</b>
+
+  <div id="a31">
+    <ul class="list list-body">
+      <li v-for="item in baiduMusic">
+        <div><input v-model="item.checked" type="radio"> </div>
+        <span>{{ item.name}}</span>
+        <span> {{item.song}}</span>
+        <span>{{item.album}}</span>
+      </li>
+    </ul>
+    <div class="select">
+      <span>
+        <span>统计：</span>
+      </span>
+      <div class="others">
+        <span><em></em>选中歌手有：3位</span>
+        <span><em></em>专辑有：5张</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let datao = [
+      {
+        id: Date.now() + Math.random(),
+        name: "邓紫棋",
+        song: "泡沫",
+        checked: false,
+        album: 10
+      },
+      {
+        id: Date.now() + Math.random(),
+        name: "王杰",
+        song: "泡沫",
+        checked: false,
+        album: 10
+      },
+      {
+        id: Date.now() + Math.random(),
+        name: "邓紫棋",
+        song: "泡沫",
+        checked: false,
+        album: 10
+      },
+    ]
+
+    var a31 = new Vue({
+      el: "#a31",
+      data: {
+        baiduMusic: datao
+      }
+
+    })
 
 
-
-
+  </script>
 
 
 
