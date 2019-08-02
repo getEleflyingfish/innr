@@ -28,7 +28,7 @@
             }
 
             #div {
-                  width: 300px;
+                  width: 100%;
                   height: 100px;
                   margin: 100px auto;
                   border: 1px solid #ff0000;
@@ -43,11 +43,13 @@
             }
 
             #div ul li {
-                  width: 300px;
+                  width: 100%;
                   height: 100px;
                   line-height: 100px;
                   text-align: center;
                   float: left ;
+                  border-bottom: 1px solid red;
+                  margin-bottom: 5px;
             }
       </style>
 
@@ -67,34 +69,35 @@
                   var oUl = oDiv.getElementsByTagName("ul")[0];
                   var oLi = oUl.getElementsByTagName("li");
                   var oInput = document.getElementsByTagName('input');
-                  // oUl.innerHTML += oUl.innerHTML;
                   oUl.style.height = oLi[0].offsetHeight * oLi.length + "px";  //获取oUl总长度
                   console.log(oLi[0].offsetHeight)  //单个LI高度100
                   console.log(oLi.length)  //个数
                   var iSeep = -2;
                   var tamer = null;
-
-
                   clearInterval(tamer);
                   function starMove(nume) {
                         tamer = setInterval(function () {
 
                               oUl.style.top = oUl.offsetTop + iSeep + "px";
-                              if (-oUl.offsetTop >= oUl.offsetHeight / 2) {
+                              if (-oUl.offsetTop >= oUl.offsetHeight ) {
                                     oUl.style.top = "0px";
                               } else if (oUl.offsetTop > 0) {
-                                    oUl.style.top = -oUl.offsetHeight / 2 + "px";
+                                    oUl.style.top = -oUl.offsetHeight + "px";
                               }
                         }, nume)
                   }
+<<<<<<< HEAD
                   starMove('25');
                   
+=======
+                  starMove('40');
+>>>>>>> f86855d1d76602733b4df5159a74e3e9805cf74b
                   oDiv.onmouseover = function () {
                         clearInterval(tamer);
                   }
                   oDiv.onmouseout = function () {
 
-                        starMove('25');
+                        starMove('40');
                   }
                   oInput[0].onclick = function () {
                         iSeep = -2;
