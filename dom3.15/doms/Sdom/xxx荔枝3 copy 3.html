@@ -19,17 +19,17 @@
 <body>
       <style>
             .ol li {
-                  margin: 0 10px;
-                  width: 15px;
-                  height: 15px;
+                  /*   margin: 0 10px; */
+                  /*        width: 15px;
+                  height: 15px; */
                   border-radius: 50%;
                   background: #cccccc;
                   float: left;
             }
 
             .ol li.on {
-                  width: 30px;
-                  height: 30px;
+                  width: 30px !important;
+                  height: 30px!important;
             }
       </style>
 
@@ -38,26 +38,45 @@
 
 
             window.onload = function () {
-                  movement("ol li", "ol", "10", "100");
-                  // movement(".xl li",".xl", "10", "100");
+                  movement("ol", "20", "5", "15", "15", "50", "000000", "left", "100");
+                  movement("xl", "20", "5", "15", "15", "50", "000000", "left", "100");
+                  
 
             }
 
 
 
-            function movement(event, eventWap, amount, tiem) {
+            function movement(eventWap, numr, count, oWidth, oHeight, oBorderUs, oBackground, ofloat, tiem) {
                   var ul = document.createElement("ul");//创建一个ul 
                   document.body.appendChild(ul);
-                  ul.classList.add(eventWap) 
-                  let oUl = document.querySelector(eventWap);
-                  var ouls = amount;
+                  ul.classList.add(eventWap)
+                  var oUl = document.getElementsByClassName(eventWap)[0];
+                  var ouls = numr;
                   var str = '';
                   for (var i = 0; i < ouls; i++) {
                         str += `<li></li> `
                   }
-                  oUl.innerHTML = str
-                  let oLi = document.querySelectorAll(event)
-                  let tiemr = 0;
+                  oUl.innerHTML = str;
+
+                  var oLi = oUl.getElementsByTagName("li");
+
+                  /* 
+                   
+
+           .ol li.on {
+                 width: 30px;
+                 height: 30px;
+           }
+                   */
+                  for (var j = 0; j < oLi.length; j++) {
+                        oLi[j].style.margin = ` 0 ${count}px `;
+                        oLi[j].style.width = ` ${oWidth}px `;
+                        oLi[j].style.height = ` ${oHeight}px `;
+                        oLi[j].style.borderRadius = ` ${oBorderUs}% `;
+                        oLi[j].style.background = ` #${oBackground} `;
+                        oLi[j].style.float = ` ${ofloat} `;
+                  }
+                  var tiemr = 0;
                   function addclass() {
                         for (var i = 0; i < oLi.length; i++) {
                               oLi[i].classList.remove("on");
@@ -83,6 +102,62 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*             function movement( eventWap, amount, tiem) {
+                              var ul = document.createElement("ul");//创建一个ul
+                              document.body.appendChild(ul);
+                              ul.classList.add(eventWap)
+                              var oUl = document.getElementsByClassName(eventWap);
+                              var ouls = amount;
+                              var str = '';
+                              for (var i = 0; i < ouls; i++) {
+                                    str += `<li></li> `
+                              }
+                              oUl.innerHTML = str
+                              var oLi = oUl.getElementsByTagName("li")
+                              var tiemr = 0;
+                              function addclass() {
+                                    for (var i = 0; i < oLi.length; i++) {
+                                          oLi[i].classList.remove("on");
+                                          if (oLi[i].className == "on") {
+                                                alert("!!")
+                                          }
+            
+                                    }
+            
+                                    oLi[tiemr++].classList.add("on");
+                                    if (tiemr >= oLi.length) {
+                                          tiemr = 0;
+                                    }
+                              }
+                              setInterval(function () {
+                                    addclass()
+            
+                              }, tiem)
+                        } */
       </script>
 
 </body>
