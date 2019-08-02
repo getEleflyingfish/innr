@@ -1065,11 +1065,31 @@
 
   <hr class="hr">
   <b>Vue 百度音乐</b>
+  <style>
+    #a31 li {
+      border-bottom: 1px solid #cccccc;
+      line-height: 50px;
+    }
+
+    #a31 li input {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
 
   <div id="a31">
+    <ul class="">
+      <li>
+        <input type="checkbox" v-model='checkAll' @change="checkedAll"> 全选
+        <span> 歌手</span>
+        <span> 歌曲</span>
+        <span> 专辑</span>
+      </li>
+    </ul>
     <ul class="list list-body">
       <li v-for="item in baiduMusic">
-        <div><input v-model="item.checked" type="radio"> </div>
+        <!-- v-for 三个参数 1,列表项目多少 2 in  3 数组本身 -->
+        <input v-model="item.checked" type="checkbox" @change="checked">
         <span>{{ item.name}}</span>
         <span> {{item.song}}</span>
         <span>{{item.album}}</span>
@@ -1084,30 +1104,30 @@
         <span><em></em>专辑有：5张</span>
       </div>
     </div>
+    {{ checkAll }}
   </div>
-
   <script>
 
-    let datao = [
+    var datao = [
       {
         id: Date.now() + Math.random(),
         name: "邓紫棋",
         song: "泡沫",
-        checked: false,
+        checked: true,
         album: 10
       },
       {
         id: Date.now() + Math.random(),
         name: "王杰",
         song: "泡沫",
-        checked: false,
+        checked: true,
         album: 10
       },
       {
         id: Date.now() + Math.random(),
         name: "邓紫棋",
         song: "泡沫",
-        checked: false,
+        checked: true,
         album: 10
       },
     ]
@@ -1115,8 +1135,30 @@
     var a31 = new Vue({
       el: "#a31",
       data: {
+        checkAll: false,
         baiduMusic: datao
+      },
+      beforeMount(){
+        this.checked()
+      },
+      methods: {
+        checkedAll() {
+          for (let i = 0; i < this.baiduMusic.length; i++) {
+            this.baiduMusic[i].checked=this.checkAll
+          }
+        },
+        checked() {
+          for (let i = 0; i < this.baiduMusic.length; i++) {
+            if (!this.baiduMusic[i].checked) {
+              this.checkAll  = false
+              return  
+            } else {
+              this.checkAll = true
+            }
+          }
+        }
       }
+
 
     })
 
