@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+      <style>
+            .ol li {
+                  /*   margin: 0 10px; */
+                  /*        width: 15px;
+                  height: 15px; */
+                  border-radius: 50%;
+                  background: #cccccc;
+                  float: left;
+            }
+
+            .ol li.on {
+                  width: 30px !important;
+                  height: 30px!important;
+                  overflow: hidden;
+            }
+      </style>
+
+      <script>
+
+
+
+            window.onload = function () {
+                  movement("ol", "20", "5", "15", "15", "50", "000000", "left", "100");
+                  movement("xl", "20", "5", "15", "15", "50", "ccc", "left", "100");
+                  
+
+            }
+
+
+
+            function movement(eventWap, numr, count, oWidth, oHeight, oBorderUs, oBackground, ofloat, tiem) {
+                  var ul = document.createElement("ul");//创建一个ul 
+                  document.body.appendChild(ul);
+                  ul.classList.add(eventWap)
+                  var oUl = document.getElementsByClassName(eventWap)[0]; 
+                  oUl.style.display = "block";
+                  oUl.style.overflow = "hidden";
+                  var ouls = numr;
+                  var str = '';
+                  for (var i = 0; i < ouls; i++) {
+                        str += `<li></li> `
+                  }
+                  oUl.innerHTML = str;
+
+                  var oLi = oUl.getElementsByTagName("li");
+
+                  /* 
+                   
+
+           .ol li.on {
+                 width: 30px;
+                 height: 30px;
+           }
+                   */
+                  for (var j = 0; j < oLi.length; j++) {
+                        oLi[j].style.margin = ` 0 ${count}px `;
+                        oLi[j].style.width = ` ${oWidth}px `;
+                        oLi[j].style.height = ` ${oHeight}px `;
+                        oLi[j].style.borderRadius = ` ${oBorderUs}% `;
+                        oLi[j].style.background = ` #${oBackground} `;
+                        oLi[j].style.float = ` ${ofloat} `;
+                  }
+                  var tiemr = 0;
+                  function addclass() {
+                        for (var i = 0; i < oLi.length; i++) {
+                              oLi[i].classList.remove("on");
+                              if (oLi[i].className == "on") {
+                                    alert("!!")
+                              }
+
+                        }
+
+                        oLi[tiemr++].classList.add("on");
+                        if (tiemr >= oLi.length) {
+                              tiemr = 0;
+                        }
+                  }
+                  setInterval(function () {
+                        addclass()
+
+                  }, tiem)
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*             function movement( eventWap, amount, tiem) {
+                              var ul = document.createElement("ul");//创建一个ul
+                              document.body.appendChild(ul);
+                              ul.classList.add(eventWap)
+                              var oUl = document.getElementsByClassName(eventWap);
+                              var ouls = amount;
+                              var str = '';
+                              for (var i = 0; i < ouls; i++) {
+                                    str += `<li></li> `
+                              }
+                              oUl.innerHTML = str
+                              var oLi = oUl.getElementsByTagName("li")
+                              var tiemr = 0;
+                              function addclass() {
+                                    for (var i = 0; i < oLi.length; i++) {
+                                          oLi[i].classList.remove("on");
+                                          if (oLi[i].className == "on") {
+                                                alert("!!")
+                                          }
+            
+                                    }
+            
+                                    oLi[tiemr++].classList.add("on");
+                                    if (tiemr >= oLi.length) {
+                                          tiemr = 0;
+                                    }
+                              }
+                              setInterval(function () {
+                                    addclass()
+            
+                              }, tiem)
+                        } */
+      </script>
+
+</body>
+
+</html>

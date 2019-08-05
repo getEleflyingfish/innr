@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>index</title>
+    <!--防止IE进入怪异模式-->
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/rest.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+    <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+
+
+<style>
+ ul{ 
+     overflow: hidden;
+ }
+   ul li { 
+       float: left;
+   }
+</style>
+
+
+    <ul>
+        <li><img src="images/belle.jpg" alt=""></li>
+        <li><img src="images/belle.jpg" alt=""></li>
+        <li><img src="images/belle.jpg" alt=""></li>
+        <li><img src="images/belle.jpg" alt=""></li>
+        <li><img src="images/belle.jpg" alt=""></li>
+        <li><img src="images/belle.jpg" alt=""></li>
+        <li><img src="images/belle.jpg" alt=""></li>
+    </ul>
+    <script>
+
+        let imgs = document.querySelectorAll("img");
+        let clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        function lazyLoad() {
+            // 滚动卷去的高度
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTo || document.body.scrollTo
+            for (let i = 0; i < imgs.length; i++) {
+                // 图片在可视区域冒出的高度
+                let x = clientHeight + scrollTop - imgs[i].offsetTop
+                // 图片在可视区域
+                if (x > 0 && x < clientHeight + imgs[i].height) {
+                    imgs[i].src = imgs[i].getAttribute('data')
+                }
+            }
+        }
+        addEventListener("scroll", lazyLoad)
+  
+        function lazy(){ 
+            setTimeout(lazy,1000)
+        }
+    </script>
+
+</body>
+
+</html>

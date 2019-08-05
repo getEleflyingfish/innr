@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+
+
+
+      <style>
+            .m {
+                  width: 500px;
+                  height: 200px;
+                  border: 1px solid red;
+                  position: relative; 
+                  overflow: hidden;
+            }
+
+            #box {
+                  width: 50px;
+                  height: 50px;
+                  background: orange;
+                  position: absolute;
+            }
+      </style>
+      <div class="m">
+            <div id="box"></div>
+      </div>
+
+      <script>
+
+            window.onload = function () {
+                  //drag处于绝对定位状态
+                  let drag = document.getElementById('box');
+                  //  console.log( drag)
+                  //onmousedown 鼠标按下
+                  //onmouseup 鼠标弹起
+                  drag.onmousedown = function (e) {
+                        var e = e || window.event
+                        //鼠标与拖拽元素边界的距离 = 鼠标与可视区域的距离 - 拖拽元素与边界的距离
+                        let diffX = e.clientX - drag.offsetLeft
+                        let diffY = e.clientY - drag.offsetTop
+
+                        drag.onmousemove = function (e) {
+                       
+                              //拖拽元素移动的距离 = 鼠标与可视区边界的距离 - 鼠标与拖拽元素边界的距离
+                              let left = e.clientX - diffX
+                              let top = e.clientY - diffY
+
+                            
+                              //避免拖出可视区
+                              if (left < 0) {
+                                    left = 0
+                              } else if (left > window.innerWidth - drag.offsetWidth) {
+                                    left = window.innerWidth - drag.offsetWidth
+                              }
+                              if (top < 0) {
+                                    top = 0
+                              } else if (top > window.innerHeight - drag.offsetHeight) {
+                                    top = window.innerHeight - drag.offsetHeight
+                              }
+                              drag.style.left = left + 'px'
+                              drag.style.top = top + 'px'
+
+                        }
+                        drag.onmouseup = function (e) {
+                              this.onmousemove = null;
+                              this.onmouseup = null;
+                        }
+                  }
+            }
+      </script>
+
+</body>
+
+</html>
