@@ -18,30 +18,41 @@
 
 <body>
       <style>
-            .ol li {
-                  /*   margin: 0 10px; */
-                  /*        width: 15px;
-                  height: 15px; */
-                  border-radius: 50%;
-                  background: #cccccc;
-                  float: left;
-            }
+            .ol li {}
 
             .ol li.on {
                   width: 30px !important;
-                  height: 30px!important;
+                  height: 30px !important;
+                  overflow: hidden;
+            }
+
+            .xl li.on {
+                  width: 30px !important;
+                  height: 30px !important;
                   overflow: hidden;
             }
       </style>
 
       <script>
-
+            /* 
+              参数说明：
+              eventWap    元素名
+              numr        创建多少个
+              count       间距 
+              oWidth       宽
+              oHeight     高 
+              oBorderUs    圆角幅度
+              oBackground          背景颜色 
+              ofloat             float  
+              tiem            速度  
+             */
 
 
             window.onload = function () {
                   movement("ol", "20", "5", "15", "15", "50", "000000", "left", "100");
                   movement("xl", "20", "5", "15", "15", "50", "ccc", "left", "100");
-                  
+                  movement("nl", "20", "5", "15", "15", "10", "ccc", "left", "10");
+
 
             }
 
@@ -51,7 +62,7 @@
                   var ul = document.createElement("ul");//创建一个ul 
                   document.body.appendChild(ul);
                   ul.classList.add(eventWap)
-                  var oUl = document.getElementsByClassName(eventWap)[0]; 
+                  var oUl = document.getElementsByClassName(eventWap)[0];
                   oUl.style.display = "block";
                   oUl.style.overflow = "hidden";
                   var ouls = numr;
@@ -63,6 +74,7 @@
 
                   var oLi = oUl.getElementsByTagName("li");
 
+
                   /* 
                    
 
@@ -72,6 +84,7 @@
            }
                    */
                   for (var j = 0; j < oLi.length; j++) {
+
                         oLi[j].style.margin = ` 0 ${count}px `;
                         oLi[j].style.width = ` ${oWidth}px `;
                         oLi[j].style.height = ` ${oHeight}px `;
@@ -83,17 +96,22 @@
                   function addclass() {
                         for (var i = 0; i < oLi.length; i++) {
                               oLi[i].classList.remove("on");
-                              if (oLi[i].className == "on") {
+                              if (oLi[i].className === "on") {
                                     alert("!!")
+                                    oLi[i].style.width = "15px";
+                                    oLi[i].style.height = "15px";
                               }
 
                         }
 
                         oLi[tiemr++].classList.add("on");
+
                         if (tiemr >= oLi.length) {
                               tiemr = 0;
                         }
                   }
+
+
                   setInterval(function () {
                         addclass()
 
@@ -148,9 +166,9 @@
                                           if (oLi[i].className == "on") {
                                                 alert("!!")
                                           }
-            
+
                                     }
-            
+
                                     oLi[tiemr++].classList.add("on");
                                     if (tiemr >= oLi.length) {
                                           tiemr = 0;
@@ -158,7 +176,7 @@
                               }
                               setInterval(function () {
                                     addclass()
-            
+
                               }, tiem)
                         } */
       </script>
