@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>index</title>
+    <!--防止IE进入怪异模式-->
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/rest.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+    <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+
+
+    <style>
+        ul {
+
+            width: 100%;
+
+        }
+
+        ul li {
+
+            width: 100%;
+            height: 600px;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+
+    <ul class="container">
+        <li class="img-area"><img class="my-photo" data-src="images/looker1.jpg" alt="loading"></li>
+        <li class="img-area"><img class="my-photo" data-src="images/looker3.jpg" alt="loading"></li>
+        <li class="img-area"><img class="my-photo" data-src="images/looker1.jpg" alt="loading"></li>
+        <li class="img-area"><img class="my-photo" data-src="images/peri1.jpg" alt="loading"></li>
+        <li class="img-area"><img class="my-photo" data-src="images/looker3.jpg" alt="loading"></li>
+        <li class="img-area"><img class="my-photo" data-src="images/peri1.jpg" alt="loading"></li>
+        <li class="img-area"><img class="my-photo" data-src="images/peri1.jpg" alt="loading"></li>
+    </ul>
+    <script>
+
+
+
+        window.onload = function () {
+            let index = 0;
+            const imgs = document.querySelectorAll('.my-photo');
+            for (let i = index; i < imgs.length; i++) {
+                if (isInSight(imgs[i])) {
+                    loadImg(imgs[i]);
+                    index = i;
+                }
+            }
+            function loadImg(el) {
+                if (!el.src) {
+                    const source = el.dataset.src;
+                    el.src = source;
+                }
+            }
+            function isInSight(el) {
+                const bound = el.getBoundingClientRect();
+                const clientHeight = window.innerHeight;
+                //如果只考虑向下滚动加载
+                //const clientWidth=window.innerWeight;
+                return bound.top <= clientHeight + 100;
+            }
+        }
+
+        window.onscroll = throttle(checkImgs);
+        function throttle(fn, mustRun = 500) {
+            const timer = null;
+            let previous = null;
+            return function () {
+                const now = new Date();
+                const context = this;
+                const args = arguments;
+                if (!previous) {
+                    previous = now;
+                }
+                const remaining = now - previous;
+                if (mustRun && remaining >= mustRun) {
+                    fn.apply(context, args);
+                    previous = now;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*      // 图片懒加载类
+             class LazyLoad {
+                 constructor(el) {
+                     this.imglist = Array.from(document.querySelectorAll(el)); // 需使用懒加载的图片集合
+                     this.init(); // 初始化
+                 }
+                 // 判断是否该图片是否可以加载
+                 canILoad() {
+                     let imglist = this.imglist;
+                     for (let i = imglist.length; i--;) {
+                         // 缩写，相当于if true
+                         this.getBound(imglist[i]) && this.loadImage(imglist[i], i);
+                     }
+                 }
+                 // 获取图片与窗口的信息
+                 getBound(el) {
+                     let bound = el.getBoundingClientRect();
+                     let clientHeight = window.innerHeight;
+                     // 图片距离顶部的距离 <= 浏览器可视化的高度，从而推算出是否需要加载
+                     return bound.top <= clientHeight - 100; // -100是为了看到效果，您也可以去掉
+                 }
+                 // 加载图片
+                 loadImage(el, index) {
+                     // 获取之前设置好的data-original值
+                     let src = el.getAttribute('data-original');
+                     // 赋值到src，从而请求资源
+                     el.src = src;
+                     // 避免重复判断，已经确定加载的图片应当从imglist移除
+                     this.imglist.splice(index, 1);
+                 }
+                 // 当浏览器滚动的时候，继续判断
+                 bindEvent() {
+                     window.addEventListener('scroll', () => {
+                         this.imglist.length && this.canILoad();
+                     });
+                 }
+                 // 初始化
+                 init() {
+                     this.canILoad();
+                     this.bindEvent();
+                 }
+             }
+             // 实例化对象，参数则是需要使用懒加载的图片类名
+             const lazy = new LazyLoad('.load') */
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
