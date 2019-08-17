@@ -28,20 +28,39 @@
             var text = document.querySelector("#p1");
             var oInout = document.querySelectorAll("input");
             var number = null;
+
             oInout[0].onclick = function () {
                   number = 2;
-                  var s = text.style.fontSize;
-                  var size = parseInt(s) + number;
-                  console.log(size)
-                  text.style.fontSize = size + "px";
+                  var _size = text.style.fontSize;
+                  //   console.log(_size)
+                  _size = parseInt(_size) + number;
+                  console.log(_size)
+                  text.style.fontSize = _size + 'px';
             }
             oInout[1].onclick = function () {
                   number = -2;
-                  var s = text.style.fontSize;
-                  var size = parseInt(s) + number;
-                  console.log(size)
-                  text.style.fontSize = size + "px";
+                  var _size = text.style.fontSize;
+                  //   console.log(_size)
+                  _size = parseInt(_size) + number;
+                  console.log(_size)
+                  text.style.fontSize = _size + 'px';
             }
+
+
+            /*         oInout[0].onclick = function () {
+                          number = 2;
+                          var s = text.style.fontSize;
+                          var size = parseInt(s) + number;
+                          console.log(size)
+                          text.style.fontSize = size + "px";
+                    }
+                    oInout[1].onclick = function () {
+                          number = -2;
+                          var s = text.style.fontSize;
+                          var size = parseInt(s) + number;
+                          console.log(size)
+                          text.style.fontSize = size + "px";
+                    } */
 
 
 
