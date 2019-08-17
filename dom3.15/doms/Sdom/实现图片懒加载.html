@@ -21,22 +21,19 @@
 
     <style>
         ul {
-
             width: 100%;
-
         }
 
         ul li {
-
             width: 100%;
-            height: 600px;
+            height: 520px;
             text-align: center;
         }
 
         img {
             width: 100%;
             max-width: 500px;
-            height: 200px;
+            height: 500px;
             margin-bottom: 20px;
         }
     </style>
@@ -55,48 +52,106 @@
 
 
 
-        window.onload = function () {
-            let index = 0;
-            const imgs = document.querySelectorAll('.my-photo');
-            for (let i = index; i < imgs.length; i++) {
-                if (isInSight(imgs[i])) {
-                    loadImg(imgs[i]);
-                    index = i;
-                }
+
+
+
+        var ul = document.querySelector(".container")
+        var aLi = ul.querySelector("li");
+        var imgs = ul.querySelectorAll("img");
+        console.log(imgs)
+        /* 创建img标签函数 */
+        //dataset   :obj.dataset.src 返回对象.src的属性/值
+        //（1）获取节点和节点的“data-src”属性，继而判断此节点的子节点有没有创建img，没有则动态创建img标签将其“data-src”的值赋给img的src，有则不做任何处理
+        function createImg(obj) {
+            var src = '';
+            if (obj.dataset.src) {
+                src = obj.dataset.src;
+            } else {
+                src = obj.getAttribute('data-src');
             }
-            function loadImg(el) {
-                if (!el.src) {
-                    const source = el.dataset.src;
-                    el.src = source;
-                }
-            }
-            function isInSight(el) {
-                const bound = el.getBoundingClientRect();
-                const clientHeight = window.innerHeight;
-                //如果只考虑向下滚动加载
-                //const clientWidth=window.innerWeight;
-                return bound.top <= clientHeight + 100;
+            if (obj.children.length <= 1) {
+                var img = document.createElement('img');
+                img.src = src;
+                obj.appendChild(img);
             }
         }
 
-        window.onscroll = throttle(checkImgs);
-        function throttle(fn, mustRun = 500) {
-            const timer = null;
-            let previous = null;
-            return function () {
-                const now = new Date();
-                const context = this;
-                const args = arguments;
-                if (!previous) {
-                    previous = now;
-                }
-                const remaining = now - previous;
-                if (mustRun && remaining >= mustRun) {
-                    fn.apply(context, args);
-                    previous = now;
+        //（2）通过“offsetTop”来连续获取节点到文档顶部的距离并更新，直到节点再没有父级为止
+        function getTop(obj) {
+            var h = 0;
+            while (obj) {
+                h += obj.offsetTop;
+                obj = obj.offsetParent;
+            }
+            return h;
+        }
+
+        // （3）滚动实时计算所到区域计算“节点到顶部距离”与“滚动条滚动距离”的大小，当“滚动条滚动距离”大于“节点到顶部距离”时开始创建一个img（（1）的函数）
+
+        window.onscroll = function () {
+            var t = document.documentElement.clientHeight + (document.body.scrollTop || document.documentElement.scrollTop);
+            for (var i = 0; i < aLi.length; i++) {
+                if (getTop(aLi[i]) < t) {
+                    setTimeout('createImg(aLi[' + i + '])', 500)
                 }
             }
         }
+
+        Window.onload = function(){ 
+            window.onscroll();
+        }
+      
+        
+
+
+
+
+
+        /*
+        * 其中一种
+        */
+        // window.onload = function () {
+        //     let index = 0;
+        //     const imgs = document.querySelectorAll('.my-photo');
+        //     for (let i = index; i < imgs.length; i++) {
+        //         if (isInSight(imgs[i])) {
+        //             loadImg(imgs[i]);
+        //             index = i;
+        //         }
+        //     }
+        //     function loadImg(el) {
+        //         if (!el.src) {
+        //             const source = el.dataset.src;
+        //             el.src = source;
+        //         }
+        //     }
+        //     function isInSight(el) {
+        //         const bound = el.getBoundingClientRect();
+        //         const clientHeight = window.innerHeight;
+        //         //如果只考虑向下滚动加载
+        //         //const clientWidth=window.innerWeight;
+        //         return bound.top <= clientHeight + 100;
+        //     }
+        // }
+
+        // window.onscroll = throttle(checkImgs);  //
+        // function throttle(fn, mustRun = 500) {
+        //     const timer = null;
+        //     let previous = null;
+        //     return function () {
+        //         const now = new Date();
+        //         const context = this;
+        //         const args = arguments;
+        //         if (!previous) {
+        //             previous = now;
+        //         }
+        //         const remaining = now - previous;
+        //         if (mustRun && remaining >= mustRun) {
+        //             fn.apply(context, args);
+        //             previous = now;
+        //         }
+        //     }
+        // }
 
 
 
