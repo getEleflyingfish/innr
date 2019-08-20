@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+    <div class="clearfix">
+        <div class="fl w50">
+            <div id="str" style="height: 500px">
+            </div>
+            <input type="text" id="b1">
+            <input type="button" value="按钮" id="bt1">
+        </div>
+        <div class="fr w50  " id="right" style=" border-left: 1px red solid ;box-sizing: border-box ">
+
+            <input type="text" id="text">
+            <input type="text" id="text2">
+            <input type="button" value="替换" id="chazhao">
+
+            <p>
+                2019年6月4日 - 5款简单又新浪好看的CSS样式,让您的原创充新浪满色彩由新浪众测网友发布的高质量的新浪生新浪活指南类内容,本文是作者亲身的原创新浪评测体验,为帮助其他网友提供客观新浪中立的消费指南。
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        var b1 = document.querySelector("#b1");
+        var bt1 = document.querySelector("#bt1");
+        var strText = document.querySelector("#str");
+        var arrColor = ['#2ae0c8', '#a2e1d4', '#acf6ef', '#cbf5fb']
+        bt1.onclick = function () {
+            var val = b1.value
+            var arr = val.split("")
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = '<span style="background:' + arrColor[i % arrColor.length] + '">' + arr[i] + '</span>'
+            }
+            console.log(arr.join(''))
+            strText.innerHTML += arr.join('')
+        }
+        for (let h = 0; h < 5; h++) {
+            console.log('h:' + h + ' ==========' + '%:' + h % 5)
+
+        }
+
+
+        /* ================================================================== */
+
+        var oimport = document.querySelector("#text");
+        var oimport1 = document.querySelector("#text2");
+        var bt2 = document.querySelector("#chazhao");
+        var oP = document.querySelector("#right p");
+
+        bt2.onclick = function () {
+            var oval = oimport.value;
+            var newOval = oimport1.value;
+            if(!oval)return
+            oP.innerHTML = oP.innerHTML.split(oval).join('<span style="background:#f00">'+newOval+'</span>') 
+
+        
+        }
+
+    </script>
+
+
+
+<!--  =======================================================================================================-->
+
+
+<script>
+
+       var jsonP = { 
+           name:'yanxi',
+           age:30,
+           xing:"nv"
+       }
+       for(var attr in jsonP) { 
+           alert( attr)
+       }
+</script>
+
+    <style>
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        div>span {
+            width: 100px;
+            float: left;
+        }
+
+        .w50 {
+            width: 50%;
+        }
+    </style>
+</body>
+
+
+</html>
