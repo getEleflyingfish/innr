@@ -38,9 +38,6 @@
 
 
 
-
-
-
     <script>
         var b1 = document.querySelector("#b1");
         var bt1 = document.querySelector("#bt1");
@@ -59,42 +56,58 @@
             console.log('h:' + h + ' ==========' + '%:' + h % 5)
 
         }
-
-
         /* ================================================================== */
-
         var oimport = document.querySelector("#text");
         var oimport1 = document.querySelector("#text2");
         var bt2 = document.querySelector("#chazhao");
         var oP = document.querySelector("#right p");
-
         bt2.onclick = function () {
             var oval = oimport.value;
             var newOval = oimport1.value;
-            if(!oval)return
-            oP.innerHTML = oP.innerHTML.split(oval).join('<span style="background:#f00">'+newOval+'</span>') 
-
-        
+            if (!oval) return
+            oP.innerHTML = oP.innerHTML.split(oval).join('<span style="background:#f00">' + newOval + '</span>')
         }
+    </script>
+    <!--  ======================================================================================================-->
+    <script>
+        /* 便利j'son for in */
+        var jsonP = [
+            { nav: 30, mm: "mi" },
+            { nav: 18, mm: "mi" }
+        ]
+        /*      for (let i = 0; i < jsonP.length; i++) {
+                 for (var attr in jsonP[i]) {
+                     alert(jsonP[i][attr])
+                 }
+             } */
+
+        /* splice  参数 第一个必须是数字，代表从哪里开始，第二个是删除几个，也是数字，如果是零 就表示返回一个空数组*/
+        //  var arrs = ['1', '22', '22', '3', '5', '8', '3', '3']
+        // 性能差 ===>
+        /*      for (let index = 0; index < arrs.length; index++) {
+                 for (let i = index + 1; i < arrs.length; i++) {
+                     if (arrs[index] == arrs[i]) {
+                         arrs.splice(i, 1)
+                         i--
+                         console.log('index::==>' + arrs[index])
+                         console.log('i::==>' + arrs[i])
+                     }
+                 }
+             } */
+        // new Set() ES6高性能数组去重  
+        //、Array.sort()
+        //for...of + includes()
+        //Array.sort()
+
+        var arrx = [1, 5, 1, 20, 87, 5, 9, 3]
+        //arrx.sort() 
+
+        arrx.sort(function (a, b) {   //sort 自带的一个排序比较方法
+            return a - b
+        }) 
+        console.log(arrx )
 
     </script>
-
-
-
-<!--  =======================================================================================================-->
-
-
-<script>
-
-       var jsonP = { 
-           name:'yanxi',
-           age:30,
-           xing:"nv"
-       }
-       for(var attr in jsonP) { 
-           alert( attr)
-       }
-</script>
 
     <style>
         .fl {
