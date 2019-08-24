@@ -1,0 +1,120 @@
+﻿<!doctype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>小鑫博客 - www.xiaoxina.cn</title>
+
+    <style>
+
+        .ul {
+            overflow: hidden;
+            float: left;
+        }
+
+        .title {
+            background: #2EA2DE;
+        }
+        .content {
+            width: 100px;
+            height: auto;
+            background: #2b96cc;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+
+        }
+        .content a {
+
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <div class="ul">
+            <div class="title">这是标题</div>
+            <div class="content">
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+
+            </div>
+
+        </div>
+        <div class="ul">
+            <div class="title">这是标题</div>
+            <div class="content">
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+                <a href="">小鑫博客</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        var ul = document.querySelectorAll('.ul');
+        var ct = document.querySelectorAll('.content');
+        var ctH = [];
+
+        for (var j = 0; j < ul.length; j++) {
+
+            // 获取下拉菜单的高度
+            ctH.push(ct[j].offsetHeight)
+            // 重置下拉菜单的高度
+            ct[j].style.height = 0;
+        }
+        for (var i = 0; i < ul.length; i++) {
+            ul[i].id = i;
+            ul[i].onmouseover = function () {
+                // 获取触摸的id值
+                var id = this.id;
+                setHeight(id, ctH[id], 1, 1);
+            }
+
+            ul[i].onmouseleave = function () {
+                var id = this.id;
+                setHeight(id, 0, -1, 1)
+
+            }
+
+        }
+        // 参数：
+        //      id     当前触摸的id
+        //      end    指定高度暂停(默认是当前高度)
+        //      step   每1毫秒增加多少高度
+        //      time   指定的间隔时间
+        function setHeight(id, end, step, time) {
+            clearInterval(ct[id].timer);
+            ct[id].timer = setInterval(function () {
+                if (ct[id].offsetHeight === end) {
+                    clearInterval(ct[id].timer)
+                } else {
+                    ct[id].style.height = ct[id].offsetHeight + step + 'px';
+                    console.log(end);
+                    console.log(ct[id].offsetHeight)
+                }
+            }, time);
+        }
+    </script>
+</body>
+
+</html>

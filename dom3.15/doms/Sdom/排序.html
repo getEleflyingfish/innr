@@ -104,11 +104,12 @@
 
 
         var arrNum = ['1-办公', '2-桌面', '3-汽车', '4-汽车2', '5-棒球', '6-运动鞋', '7-游戏', '8-社区']
+      
         var arrImg = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', 'car1.jpg', 'car2.jpg', 'car3.jpg', 'car4.jpg']
         var _img = document.querySelectorAll("#mk img")
         var _text = document.querySelectorAll("#mk span")
-        var _text = document.querySelectorAll(".ba")[0]
-        var _text = document.querySelectorAll(".ba")[1]
+        var _btn1 = document.querySelectorAll(".ba")[0]
+        var _btn2= document.querySelectorAll(".ba")[1]
 
         console.log(_img)
         console.log(_text)
@@ -120,6 +121,10 @@
             _img[i].src = './images/'+arrImg[i]
 
         }
+
+        arrNum.sort(function(a,b){return a-b }) 
+        console.log(arrNum )
+
         
 
         /* 联系 */
