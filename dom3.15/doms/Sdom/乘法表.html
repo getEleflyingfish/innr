@@ -22,23 +22,27 @@
 
 
 
+
+
+      <div id="xx"></div>
       <script>
 
-            window.onload = function () {
-                  var words = document.getElementById('words');
-                  var html = words.innerText.replace(/(\S)/g, function (key) {
-                        var r = parseInt(Math.random() * 256);
-                        var g = parseInt(Math.random() * 256);
-                        var b = parseInt(Math.random() * 256);
-                        var color = 'rgb(' + r + ',' + g + ',' + b + ')';
-                        return '<span style="font-size:30px;line-height:2;" color="' + color + '">' + key + '</span>';
-                  });
-                  words.innerHTML = html;
-            }
-      //-->
-      </script>
+            /* 99乘法表 */
 
-      <div id="words">这是一行彩色文字，每次刷新颜色都会不同！<div>
+            console.log("九九乘法表");
+            var xx = document.querySelector("#xx");
+            var str = ''
+            for (let x = 1; x <= 9; x++) {
+                  for (let j = 1; j <= x; j++) {
+                        str += x + '*' + j + '=' + x * j + "    ";
+                        if (x == j) {
+                              str += "   <br/>   "
+                        }
+                  }
+
+                  xx.innerHTML = str
+            } 
+      </script>
 
 </body>
 
