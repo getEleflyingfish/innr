@@ -18,16 +18,12 @@
     <style>
         #mk {
 
-<<<<<<< HEAD
-    <div id="xx"></div>
-=======
             width: 100%;
         }
->>>>>>> 687df9cae9e244c883ceb575e6492f0f813cc00a
 
         img {
             display: block;
-            width: 100%; 
+            width: 100%;
             height: 300px;
             float: left;
         }
@@ -37,7 +33,7 @@
             float: left;
             background: #ccc;
             border: 1px solid #ffffff;
-            text-align: center; 
+            text-align: center;
             margin-bottom: 20px;
         }
 
@@ -48,12 +44,14 @@
             clear: both;
             visibility: hidden;
             font-size: 0px;
-        } 
-        #mk li span { 
+        }
+
+        #mk li span {
             line-height: 40px;
-        } 
-        .ba { 
-            width:150px;
+        }
+
+        .ba {
+            width: 150px;
             height: 30px;
             line-height: 30px;
             text-align: center;
@@ -65,9 +63,12 @@
 
 
 
-    <div> 排序 : </div>     
+    <div> 排序 : </div>
 
-    <div style="text-align: right; padding-right: 300px;">  <div style="display: inline-block"> <a href="javascript:;" class="ba"> 从小到大排序</a><a href="javascript:;" class="ba"> 打乱排序</a></div></div>
+    <div style="text-align: right; padding-right: 300px;">
+        <div style="display: inline-block"> <a href="javascript:;" class="ba"> 从小到大排序</a><a href="javascript:;"
+                class="ba"> 打乱排序</a></div>
+    </div>
     <ul id="mk" class="clearfix">
         <li>
             <img src="" alt="">
@@ -108,12 +109,12 @@
 
 
         var arrNum = ['1-办公', '2-桌面', '3-汽车', '4-汽车2', '5-棒球', '6-运动鞋', '7-游戏', '8-社区']
-      
+
         var arrImg = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', 'car1.jpg', 'car2.jpg', 'car3.jpg', 'car4.jpg']
         var _img = document.querySelectorAll("#mk img")
         var _text = document.querySelectorAll("#mk span")
         var _btn1 = document.querySelectorAll(".ba")[0]
-        var _btn2= document.querySelectorAll(".ba")[1]
+        var _btn2 = document.querySelectorAll(".ba")[1]
 
         console.log(_img)
         console.log(_text)
@@ -122,14 +123,14 @@
         for (let i = 0; i < arrImg.length; i++) {
 
             _text[i].innerHTML = arrNum[i]
-            _img[i].src = './images/'+arrImg[i]
+            _img[i].src = './images/' + arrImg[i]
 
         }
 
-        arrNum.sort(function(a,b){return a-b }) 
-        console.log(arrNum )
+        arrNum.sort(function (a, b) { return a - b })
+        console.log(arrNum)
 
-        
+
 
         /* 联系 */
         //1排序

@@ -1,18 +1,14 @@
 ﻿<!doctype html>
-
 <html>
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>小鑫博客 - www.xiaoxina.cn</title>
 
     <style>
-
         .ul {
             overflow: hidden;
             float: left;
@@ -21,6 +17,7 @@
         .title {
             background: #2EA2DE;
         }
+
         .content {
             width: 100px;
             height: auto;
@@ -28,10 +25,9 @@
             position: relative;
             text-align: center;
             overflow: hidden;
-
         }
-        .content a {
 
+        .content a {
             display: block;
         }
     </style>
@@ -83,15 +79,15 @@
             ct[j].style.height = 0;
         }
         for (var i = 0; i < ul.length; i++) {
-            ul[i].id = i;
+            ul[i].index = i;
             ul[i].onmouseover = function () {
                 // 获取触摸的id值
-                var id = this.id;
+                var id = this.index;
                 setHeight(id, ctH[id], 1, 1);
             }
 
             ul[i].onmouseleave = function () {
-                var id = this.id;
+                var id = this.index;
                 setHeight(id, 0, -1, 1)
 
             }
