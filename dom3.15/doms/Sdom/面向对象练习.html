@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+      <style>
+            .div {
+                  display: none;
+                  border: 1px solid #d8d8d8;
+                  width: 300px;
+                  height: 300px;
+            }
+
+            .on {
+                  color: red;
+            }
+
+            input {
+                  width: 100px;
+            }
+      </style>
+
+      <div id="lo">
+            <input type="button" class="on" value="按钮">
+            <input type="button" value="按钮">
+            <input type="button" value="按钮">
+            <div class="div" style="display: block">1111</div>
+            <div class="div">22222</div>
+            <div class="div">33333</div>
+      </div>
+
+      <script>
+
+            /* 创建  create 构造函数
+               new 后边的函数： 叫做构造函数
+
+               普通方法改面向对象
+               先变形
+               尽量不要函数嵌套函数，
+               可以有全局变量
+               把onlod 里不是赋值的语句都放在单独函数里面
+               改面向对象：
+               全局变量就是属性
+               函数就是方法
+               onload中创建对象
+               this 指向问题 ：事件或者是 定时器，尽量 让面向对象中的this 指向对象
+            */
+
+            /*
+                        function CreateName(name) {
+                              this.name = name;
+                              this.crea = function () {
+                                    alert(this.name)
+                              }
+                        }
+                        var p1 = new CreateName("乖乖");
+                        p1.crea()
+                        var p2 = new CreateName("小米");
+                        p2.crea() */
+
+
+            /*           window.onload = function () {
+                            var aBtn = document.querySelectorAll("input")
+                            var aItem = document.querySelectorAll(".div")
+          
+                            for (let i = 0; i < aBtn.length; i++) {
+                                  aBtn[i].index = i;
+                                  aBtn[i].onclick = function () {
+                                        for (let i = 0; i < aBtn.length; i++) {
+                                              aBtn[i].className = '';
+                                              aItem[i].style.display = 'none';
+                                        }
+                                        this.className = 'on';
+                                        aItem[this.index].style.display = 'block';
+                                  }
+                            }
+                      } */
+            /*
+                        
+                                       普通方法改面向对象
+                                       1先变形
+                                       尽量不要函数嵌套函数，
+                                       可以有全局变量
+                                       把onlod 里不是赋值的语句都放在单独函数里面
+                                       2改面向对象：
+                                       全局变量就是属性
+                                       函数就是方法
+                                       onload中创建对象
+                                       this 指向问题 ：事件或者是 定时器，尽量 让面向对象中的this 指向对象
+                         */
+            /*      var aBtn = null;
+                 var aItem = null;
+                 window.onload = function () { 
+                       aBtn = document.querySelectorAll("input")
+                       aItem = document.querySelectorAll(".div")
+                       init();
+                 }
+                 function init() {
+                       for (let i = 0; i < aBtn.length; i++) {
+                             aBtn[i].index = i;
+                             aBtn[i].onclick = chang
+                       }
+                 }
+                 function chang() {
+                       for (let i = 0; i < aBtn.length; i++) {
+                             aBtn[i].className = '';
+                             aItem[i].style.display = 'none';
+                       }
+                       this.className = 'on';
+                       aItem[this.index].style.display = 'block';
+                 }   */
+
+
+            /* 
+              2改面向对象：
+            全局变量就是属性
+            函数就是方法
+            onload中创建对象
+            this 指向问题 ：事件或者是 定时器，尽量 让面向对象中的this 指向对象  
+           面向对象都是跟对象有关的  this 在面向对象中就是对象 不管是属性还是方法都要加上this
+             */
+ 
+            window.onload = function () {
+                  var t1 = new Tab();
+                  t1.init();
+            }
+
+            function Tab() {
+                  this.pot =document.getElementById("lo")
+                  this.aBtn =this.pot.querySelectorAll("input")
+                  this.aItem =this.pot.querySelectorAll(".div")
+            }
+            Tab.prototype.init = function () { 
+                  var _this = this;
+                  for (let i = 0; i < this.aBtn.length; i++) {
+                        this.aBtn[i].index = i;
+                        this.aBtn[i].onclick = function(){ 
+                              _this.chang(this);
+                        }
+                  }
+            }
+            Tab.prototype.chang = function (obj) {
+                  for (let i = 0; i < this.aBtn.length; i++) {
+                        this.aBtn[i].className = '';
+                        this.aItem[i].style.display = 'none';
+                  }
+                  obj.className = 'on';
+                  this.aItem[obj.index].style.display = 'block';
+            }
+
+      </script>
+
+</body>
+
+</html>
