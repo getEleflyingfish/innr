@@ -43,6 +43,32 @@
             <div class="div">33333</div>
       </div>
 
+
+      <div id="lo2" style="float: left">
+            <input type="button" class="on" value="按钮">
+            <input type="button" value="按钮">
+            <input type="button" value="按钮">
+            <div class="div" style="display: block">1111</div>
+            <div class="div">22222</div>
+            <div class="div">33333</div>
+      </div>
+      <div id="lo3" style="float: left">
+            <input type="button" class="on" value="按钮">
+            <input type="button" value="按钮">
+            <input type="button" value="按钮">
+            <div class="div" style="display: block">1111</div>
+            <div class="div">22222</div>
+            <div class="div">33333</div>
+      </div>
+      <div id="lo4" style="float: left">
+            <input type="button" class="on" value="按钮">
+            <input type="button" value="按钮">
+            <input type="button" value="按钮">
+            <div class="div" style="display: block">1111</div>
+            <div class="div">22222</div>
+            <div class="div">33333</div>
+      </div>
+
       <script>
 
             /* 创建  create 构造函数
@@ -133,22 +159,33 @@
             this 指向问题 ：事件或者是 定时器，尽量 让面向对象中的this 指向对象  
            面向对象都是跟对象有关的  this 在面向对象中就是对象 不管是属性还是方法都要加上this
              */
- 
+
             window.onload = function () {
-                  var t1 = new Tab();
+                  var t1 = new Tab("lo");
                   t1.init();
+                  t1.auto();
+                  var t2 = new Tab("lo2");
+                  t2.init();
+                  t2.auto(); 
+                  var t3 = new Tab("lo3");
+                  t3.init();
+                  t3.auto();
+                  var t4 = new Tab("lo4");
+                  t4.init();
+                  t4.auto();
             }
 
-            function Tab() {
-                  this.pot =document.getElementById("lo")
-                  this.aBtn =this.pot.querySelectorAll("input")
-                  this.aItem =this.pot.querySelectorAll(".div")
+            function Tab(id) {
+                  this.pot = document.getElementById(id)
+                  this.aBtn = this.pot.querySelectorAll("input")
+                  this.aItem = this.pot.querySelectorAll(".div")
+                  this.insunm = 0;
             }
-            Tab.prototype.init = function () { 
+            Tab.prototype.init = function () {
                   var _this = this;
                   for (let i = 0; i < this.aBtn.length; i++) {
                         this.aBtn[i].index = i;
-                        this.aBtn[i].onclick = function(){ 
+                        this.aBtn[i].onclick = function () {
                               _this.chang(this);
                         }
                   }
@@ -161,7 +198,22 @@
                   obj.className = 'on';
                   this.aItem[obj.index].style.display = 'block';
             }
-
+            Tab.prototype.auto = function () {
+                  var _this = this;
+                  setInterval(function () {   
+                        if( _this.insunm==_this.aBtn.length-1){ 
+                              _this.insunm = 0;
+                        }else{ 
+                              _this.insunm++
+                        }
+                        for (let i = 0; i < _this.aBtn.length; i++) {
+                              _this.aBtn[i].className = '';
+                              _this.aItem[i].style.display = 'none';
+                        }
+                        _this.aBtn[_this.insunm].className = 'on';
+                        _this.aItem[_this.insunm].style.display = 'block';
+                  }, 2000)
+            }
       </script>
 
 </body>
