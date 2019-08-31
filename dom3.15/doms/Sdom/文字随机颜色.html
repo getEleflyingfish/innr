@@ -25,21 +25,29 @@
       <script>
 
             window.onload = function () {
-                  var words = document.getElementById('words');
-                  var html = words.innerText.replace(/(\S)/g, function (key) {
-                        var r = parseInt(Math.random() * 256);
-                        var g = parseInt(Math.random() * 256);
-                        var b = parseInt(Math.random() * 256);
-                        var color = 'rgb(' + r + ',' + g + ',' + b + ')';
-                        return '<span style="font-size:30px;line-height:2;" color="' + color + '">' + key + '</span>';
-                  });
-                  words.innerHTML = html;
+                  function discolor(eleId) {
+                        var words = document.getElementById(eleId);
+                        var html = words.innerText.replace(/(\S)/g, function (key) {
+                              var r = parseInt(Math.random() * 256);
+                              var g = parseInt(Math.random() * 256);
+                              var b = parseInt(Math.random() * 256);
+                              var color = 'rgb(' + r + ',' + g + ',' + b + ')';
+                              return '<span style=" font-size: 30px;   line-height: 2; color :' + color + '"  > ' + key + '</span > ';
+                        });
+                        words.innerHTML = html;
+                  } 
+               //   var clearset = null;
+                  discolor("words")
+                  setInterval(function(){ 
+                        discolor("words")
+                  },1000)
+
             }
       //-->
       </script>
 
       <div id="words">这是一行彩色文字，每次刷新颜色都会不同！<div>
-
+    
 </body>
 
 </html>

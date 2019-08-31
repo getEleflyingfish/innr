@@ -25,7 +25,7 @@
                   width: 500px;
                   height: 200px;
                   border: 1px solid red;
-                  position: relative; 
+                  position: relative;
                   overflow: hidden;
             }
 
@@ -42,46 +42,122 @@
 
       <script>
 
-            window.onload = function () {
-                  //drag处于绝对定位状态
-                  let drag = document.getElementById('box');
-                  //  console.log( drag)
-                  //onmousedown 鼠标按下
-                  //onmouseup 鼠标弹起
-                  drag.onmousedown = function (e) {
+            /*            window.onload = function () {
+                             let drag = document.getElementById('box');
+                             //  console.log( drag)
+                             //onmousedown 鼠标按下
+                             //onmouseup 鼠标弹起
+                             drag.onmousedown = function (e) {
+                                   var e = e || window.event
+                                   //鼠标与拖拽元素边界的距离 = 鼠标与可视区域的距离 - 拖拽元素与边界的距离
+                                   let diffX = e.clientX - drag.offsetLeft
+                                   let diffY = e.clientY - drag.offsetTop 
+                  
+                                   drag.onmousemove = function (e) {
+                                  
+                                         //拖拽元素移动的距离 = 鼠标与可视区边界的距离 - 鼠标与拖拽元素边界的距离
+                                         let left = e.clientX - diffX
+                                         let top = e.clientY - diffY
+           
+                                         //避免拖出可视区
+                                       if (left < 0) {
+                                               left = 0
+                                         } else if (left > window.innerWidth - drag.offsetWidth) {
+                                               left = window.innerWidth - drag.offsetWidth
+                                         }
+                                         if (top < 0) {
+                                               top = 0
+                                         } else if (top > window.innerHeight - drag.offsetHeight) {
+                                               top = window.innerHeight - drag.offsetHeight
+                                         } 
+           
+                                         drag.style.left = left + 'px'
+                                         drag.style.top = top + 'px'
+           
+                                   }
+                                   drag.onmouseup = function (e) {
+                                         this.onmousemove = null;
+                                         this.onmouseup = null;
+                                   }
+                                   return false;
+                             }
+                       }   */
+
+
+
+
+
+
+
+            /* 面向对象  */
+
+            /*       var drag = null;
+                  var diffX = 0;
+                  var diffY = 0;
+                  window.onload = function () {
+                        drag = document.getElementById('box');
+                        init()
+                  }  
+                  function init(){ 
+                        drag.onmousedown = fnsedown; 
+                  }
+      
+                  function fnsedown(e) {
                         var e = e || window.event
-                        //鼠标与拖拽元素边界的距离 = 鼠标与可视区域的距离 - 拖拽元素与边界的距离
                         let diffX = e.clientX - drag.offsetLeft
                         let diffY = e.clientY - drag.offsetTop
-
-                        drag.onmousemove = function (e) {
-                       
-                              //拖拽元素移动的距离 = 鼠标与可视区边界的距离 - 鼠标与拖拽元素边界的距离
-                              let left = e.clientX - diffX
-                              let top = e.clientY - diffY
-
-                            
-                              //避免拖出可视区
-                              if (left < 0) {
-                                    left = 0
-                              } else if (left > window.innerWidth - drag.offsetWidth) {
-                                    left = window.innerWidth - drag.offsetWidth
-                              }
-                              if (top < 0) {
-                                    top = 0
-                              } else if (top > window.innerHeight - drag.offsetHeight) {
-                                    top = window.innerHeight - drag.offsetHeight
-                              }
-                              drag.style.left = left + 'px'
-                              drag.style.top = top + 'px'
-
-                        }
-                        drag.onmouseup = function (e) {
-                              this.onmousemove = null;
-                              this.onmouseup = null;
-                        }
+                        drag.onmousemove = fnmove;
+                        drag.onmouseup = fnup;
+                        return false;
                   }
+      
+                  function fnmove(e) {
+                        let left = e.clientX - diffX
+                        let top = e.clientY - diffY
+                        drag.style.left = left + 'px'
+                        drag.style.top = top + 'px'
+                  }
+      
+                  function fnup(e) {
+                        this.onmousemove = null;
+                        this.onmouseup = null;
+                  } */
+
+            /*  面向对象改  */
+
+            window.onload = function () {
+                  var d1 = new Mop("box")
             }
+
+            function Mop(id) {
+                  this.drag = document.getElementById(id);
+                  this.diffX = 0;
+                  this.diffY = 0;
+
+            }
+            Mop.prototype.init = function () {
+                  this.drag.onmousedown = this.fnsedown;
+            }
+            Mop.prototype.fnsedown = function (e) {
+                  var e = e || window.event
+                  let diffX = e.clientX - this.drag.offsetLeft
+                  let diffY = e.clientY - this.drag.offsetTop
+                  this.drag.onmousemove = this.fnmove;
+                  this.drag.onmouseup = this.fnup;
+                  return false;
+            }
+            Mop.prototype.fnmove = function (e) {
+                  let left = e.clientX - this.diffX
+                  let top = e.clientY - this.diffY
+                  this.drag.style.left = left + 'px'
+                  this.drag.style.top = top + 'px'
+            }
+            Mop.prototype.fnup = function () {
+                  this.onmousemove = null;
+                  this.onmouseup = null;
+            }
+
+
       </script>
 
 </body>
