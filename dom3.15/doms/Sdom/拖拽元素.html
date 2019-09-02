@@ -89,72 +89,82 @@
 
 
 
-            /* 面向对象  */
 
-            /*       var drag = null;
-                  var diffX = 0;
-                  var diffY = 0;
-                  window.onload = function () {
-                        drag = document.getElementById('box');
-                        init()
-                  }  
-                  function init(){ 
-                        drag.onmousedown = fnsedown; 
-                  }
-      
-                  function fnsedown(e) {
-                        var e = e || window.event
-                        let diffX = e.clientX - drag.offsetLeft
-                        let diffY = e.clientY - drag.offsetTop
-                        drag.onmousemove = fnmove;
-                        drag.onmouseup = fnup;
-                        return false;
-                  }
-      
-                  function fnmove(e) {
-                        let left = e.clientX - diffX
-                        let top = e.clientY - diffY
-                        drag.style.left = left + 'px'
-                        drag.style.top = top + 'px'
-                  }
-      
-                  function fnup(e) {
-                        this.onmousemove = null;
-                        this.onmouseup = null;
-                  } */
 
-            /*  面向对象改  */
+            /*  面向对象  */
+            /* 
+                        var odiv = null;
+                        var disX = 0;
+                        var disY = 0;
+                        window.onload = function () {
+                              odiv = document.getElementById("box"); 
+                                init()
+                        }
+                        function init() {
+                              odiv.onmousedown = fnDown;
+                        }
+            
+                        function fnDown(ev) {
+                              var ev = ev || window.event;
+                              disX = ev.clientX - odiv.offsetLeft;
+                              disY = ev.clientY - odiv.offsetTop;
+                              document.onmousemove = fnMove;
+                              document.onmouseup = fnUp;
+                        }
+                        function fnMove(ev) {
+                              var ev = ev || window.event;
+                              odiv.style.left = ev.clientX - disX + 'px';
+                              odiv.style.top = ev.clientY - disY + 'px';
+                        }
+                        function fnUp() {
+                              document.onmousemove = null;
+                              document.onmouseup = null;
+                        }
+             */
+
+            /*  面向对象改 
+               1, 全局变量就是属性
+               2，函数就是方法
+               3，onload中创建对象
+               4，该this 指向
+             */
 
             window.onload = function () {
-                  var d1 = new Mop("box")
+                  var p1 = new Tbs("box");
+                  p1.init();
             }
 
-            function Mop(id) {
-                  this.drag = document.getElementById(id);
-                  this.diffX = 0;
-                  this.diffY = 0;
-
+            function Tbs(id) {
+                  this.odiv = document.getElementById(id);
+                  this.disX = 0;
+                  this.disY = 0;
             }
-            Mop.prototype.init = function () {
-                  this.drag.onmousedown = this.fnsedown;
+            Tbs.prototype.init = function () {
+                  var that = this;
+                  this.odiv.onmousedown =function(ev){ 
+                        var ev = ev || window.event;
+                        that.fnDown(ev);
+                  };
             }
-            Mop.prototype.fnsedown = function (e) {
-                  var e = e || window.event
-                  let diffX = e.clientX - this.drag.offsetLeft
-                  let diffY = e.clientY - this.drag.offsetTop
-                  this.drag.onmousemove = this.fnmove;
-                  this.drag.onmouseup = this.fnup;
-                  return false;
+            Tbs.prototype.fnDown = function (ev) {
+                 
+                  var that = this;
+                  this.disX = ev.clientX - this.odiv.offsetLeft;
+                  this.disY = ev.clientY - this.odiv.offsetTop;
+                  document.onmousemove = function(ev){ 
+                        var ev = ev || window.event;
+                        that.fnMove(ev)
+                  };
+                  document.onmouseup = this.fnUp;
             }
-            Mop.prototype.fnmove = function (e) {
-                  let left = e.clientX - this.diffX
-                  let top = e.clientY - this.diffY
-                  this.drag.style.left = left + 'px'
-                  this.drag.style.top = top + 'px'
+            Tbs.prototype.fnMove = function (ev) {
+                
+                  this.odiv.style.left = ev.clientX - this.disX + 'px';
+                  this.odiv.style.top = ev.clientY - this.disY + 'px';
             }
-            Mop.prototype.fnup = function () {
-                  this.onmousemove = null;
-                  this.onmouseup = null;
+            Tbs.prototype.fnUp = function () {
+                  document.onmousemove = null;
+                  document.onmouseup = null;
             }
 
 
