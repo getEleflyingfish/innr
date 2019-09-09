@@ -1078,9 +1078,11 @@
   </style>
 
   <div id="a31">
+    <!--   {{ ischeckedAll }} -->
+    <!--  v-model="ischeckedAll"  -->
     <ul class="">
       <li>
-        <input type="checkbox" v-model='checkAll' @change="checkedAll"> 全选
+        <input type="checkbox" v-model="checkAll" @change="btnchecked"> 全选
         <span> 歌手</span>
         <span> 歌曲</span>
         <span> 专辑</span>
@@ -1089,7 +1091,7 @@
     <ul class="list list-body">
       <li v-for="item in baiduMusic">
         <!-- v-for 三个参数 1,列表项目多少 2 in  3 数组本身 -->
-        <input v-model="item.checked" type="checkbox" @change="checked">
+        <input v-model="item.checked" type="checkbox" @change="btnList">
         <span>{{ item.name}}</span>
         <span> {{item.song}}</span>
         <span>{{item.album}}</span>
@@ -1100,11 +1102,11 @@
         <span>统计：</span>
       </span>
       <div class="others">
-        <span><em></em>选中歌手有：3位</span>
+        <span><em></em>选中歌手有：{{ checkedSinger}}位</span>
         <span><em></em>专辑有：5张</span>
       </div>
     </div>
-    {{ checkAll }}
+
   </div>
   <script>
 
@@ -1135,26 +1137,42 @@
     var a31 = new Vue({
       el: "#a31",
       data: {
-        checkAll: false,
+        checkAll: true,
         baiduMusic: datao
       },
-      beforeMount(){
-        this.checked()
+      /* 
+      *
+      *      computed只在初始化时被调用
+      *
+      *      methods会在数据变化时被调用, 即使变动的数据与自身无关 
+      *
+      * */
+
+      computed: {
+
+
+        checkedSinger() {
+          return this.baiduMusic.filter(item => item.checked).length
+
+        }
       },
       methods: {
-        checkedAll() {
+        btnchecked() {
           for (let i = 0; i < this.baiduMusic.length; i++) {
-            this.baiduMusic[i].checked=this.checkAll
+            this.baiduMusic[i].checked = this.checkAll;
           }
         },
-        checked() {
+        btnList() {
           for (let i = 0; i < this.baiduMusic.length; i++) {
-            if (!this.baiduMusic[i].checked) {
-              this.checkAll  = false
-              return  
-            } else {
-              this.checkAll = true
-            }
+           if(!this.baiduMusic[i].checked ){ 
+            this.checkAll = false;
+            return
+           }else{
+            this.checkAll = true;
+           }
+
+
+
           }
         }
       }

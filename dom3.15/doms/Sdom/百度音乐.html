@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+
+
+
+      <hr class="hr">
+      <b>Vue 百度音乐</b>
+      <style>
+            #a31 li {
+                  border-bottom: 1px solid #cccccc;
+                  line-height: 50px;
+            }
+
+            #a31 li input {
+                  width: 20px;
+                  height: 20px;
+            }
+      </style>
+
+      <div id="a31">
+            <ul class="">
+                  <li>
+                        <input type="checkbox" v-model='checkAll' @change="checkedAll"> 全选
+                        <span> 歌手</span>
+                        <span> 歌曲</span>
+                        <span> 专辑</span>
+                  </li>
+            </ul>
+            <ul class="list list-body">
+                  <li v-for="item in baiduMusic">
+                        <!-- v-for 三个参数 1,列表项目多少 2 in  3 数组本身 -->
+                        <input v-model="item.checked" type="checkbox" @change="checked">
+                        <span>{{ item.name}}</span>
+                        <span> {{item.song}}</span>
+                        <span>{{item.album}}</span>
+                  </li>
+            </ul>
+            <div class="select">
+                  <span>
+                        <span>统计：</span>
+                  </span>
+                  <div class="others">
+                        <span><em></em>选中歌手有：{{ checkedSinger}}位</span>
+                        <span><em></em>专辑有：5张</span>
+                  </div>
+            </div>
+            <!--             {{ checkAll }} -->
+      </div>
+      <script>
+
+            var datao = [
+                  {
+                        id: Date.now() + Math.random(),
+                        name: "邓紫棋",
+                        song: "泡沫",
+                        checked: true,
+                        album: 10
+                  },
+                  {
+                        id: Date.now() + Math.random(),
+                        name: "王杰",
+                        song: "泡沫",
+                        checked: true,
+                        album: 10
+                  },
+                  {
+                        id: Date.now() + Math.random(),
+                        name: "邓紫棋",
+                        song: "泡沫",
+                        checked: true,
+                        album: 10
+                  },
+            ]
+
+            var a31 = new Vue({
+                  el: "#a31",
+                  data: {
+                        checkAll: false,
+                        baiduMusic: datao
+                  },
+                  beforeMount() {
+                        this.checked()
+                  },
+                  computed: {
+                        checkedSinger() {
+                              return this.baiduMusic.filter(item => item.checked).length
+
+                        }
+                  },
+          
+                  methods: {
+                  checkedAll() {
+                        for (let i = 0; i < this.baiduMusic.length; i++) {
+                              this.baiduMusic[i].checked = this.checkAll
+                        }
+                  },
+                  checked() {
+                        for (let i = 0; i < this.baiduMusic.length; i++) {
+                              if (!this.baiduMusic[i].checked) {
+                                    this.checkAll = false
+                                    return
+                              } else {
+                                    this.checkAll = true
+                              }
+                              console.log(!this.baiduMusic[i].checked)
+                        }
+
+
+                  }
+            }
+
+
+            })
+
+
+      </script>
+
+</body>
+
+</html>
