@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Document</title>
+    <!--防止IE进入怪异模式-->
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/rest.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<style>
+    body {
+        font-size: 15px;
+        line-height: 2;
+    }
+
+    p {
+        color: red;
+    }
+</style>
+
+<body>
+
+
+    <div>
+        1. javascript的typeof返回哪些数据类型.
+
+    </div>
+
+    <p>
+        string,number,boolean,functon,undefined,object
+    </p>
+
+    <div>
+        2. 例举3种强制类型转换和2种隐式类型转换?
+        <p>
+            强制（parseInt,parseFloat,number）
+            隐式（== ===）
+        </p>
+        3. split() join() 的区别
+
+        <p>
+            前者是将字符串切割成数组的形式，后者是将数组转换成字符串
+        </p>
+        4. 数组方法pop() push() unshift() shift()
+        <p>
+            push()尾部添加 pop()尾部删除
+            unshift()头部添加 shift()头部删除
+        </p>
+        5. IE和标准下有哪些兼容性的写法
+        <p>
+            var ev = ev || window.event <br>
+            document.documentElement.clientWidth || document.body.clientWidth <br>
+            Var target = ev.srcElement||ev.target
+        </p>
+        6. ajax请求的时候get 和post方式的区别
+        <p>
+            一个在url后面 ，一个放在虚拟载体里面
+            get有大小限制(只能提交少量参数)
+            安全问题
+            应用不同 ，请求数据和提交数据
+        </p>
+        7. call和apply的区别
+
+        8. ajax请求时，如何解析json数据
+        <p>
+            使用JSON.parse
+        </p>
+        9. 事件委托是什么
+        <p>
+            利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行！
+        </p>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

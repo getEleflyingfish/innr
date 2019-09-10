@@ -64,7 +64,11 @@
         bt2.onclick = function () {
             var oval = oimport.value;
             var newOval = oimport1.value;
-            if (!oval) return
+            if (!oval) {
+                alert("查找不存在")
+                return
+            }
+
             oP.innerHTML = oP.innerHTML.split(oval).join('<span style="background:#f00">' + newOval + '</span>')
         }
     </script>
@@ -104,8 +108,8 @@
 
         arrx.sort(function (a, b) {   //sort 自带的一个排序比较方法
             return a - b
-        }) 
-        console.log(arrx )
+        })
+        console.log(arrx)
 
     </script>
 

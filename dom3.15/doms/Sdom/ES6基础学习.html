@@ -24,7 +24,11 @@
 
 
 
-
+     <div class="lm">
+         <span>77777777</span>
+         <span>7777777</span>
+         <span>7777777777</span>
+     </div>
 
     <script>
         /* 
@@ -311,7 +315,7 @@
         let add9 = ['jspang', '技术胖', '前端教程'];
         arr.forEach((val, index) => console.log(index, val));
         /* forEach循环的特点是会自动省略为空的数组元素，相当于直接给我们筛空了。当是有时候也会给我们帮倒忙。 */
-
+    
         //-- 数组转换字符串
         //在开发中我们经常会碰到把数组输出成字符串的形式，我们今天学两种方法，你要注意两种方法的区别。
         //join()方法 
@@ -345,7 +349,7 @@
         console.log(obj3.skill);
 
         // --自定义对象方法 
-        //对象方法就是把兑现中的属性，用匿名函数的形式编程方法。这个在以前就有应用，我们这里只是简单的复习一下。
+        //对象方法就是把对象中的属性，用匿名函数的形式编程方法。这个在以前就有应用，我们这里只是简单的复习一下。
         var obj4 = {
             add: function (a, b) {
                 return a + b;
@@ -466,7 +470,7 @@
 
         /* 
         *
-        * 第15节：用Proxy进行预处理
+        * 第15节：用Proxy(代理)进行预处理
         * */
         //如果你学过我的Vue的课程，一定会知道钩子函数
         //什么是钩子函数: 操作一个对象或者方法时会有几种动作   比如：在运行函数前初始化一些数据，在改变对象值后做一些善后处理 
@@ -497,10 +501,11 @@
             {
                 get: function (target, key, property) {
                     console.log('come in GetXX7-16');
+                    
                     return target[key];
                 }
             });
-        console.log(pro.name);
+        console.log("507: "+pro.name);
         // console.log(pro.add(200));
 
         //可以在控制台看到结果，先输出了come in Get。相当于在方法调用前的钩子函数。
@@ -550,7 +555,7 @@
         //--类的多方法声明
         class Coder {
             name(val) {
-                console.log(val);
+                console.log("558: "+val);
                 return val;
             }
             skill(val) {

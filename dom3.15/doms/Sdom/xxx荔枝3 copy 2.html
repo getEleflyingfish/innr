@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+      <title>index</title>
+      <!--防止IE进入怪异模式-->
+      <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <link href="css/rest.css" type="text/css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="css/layout.css" />
+      <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+      <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+      <script type="text/javascript" src="js/swiper.min.js"></script>
+      <script type="text/javascript" src="js/base.js"></script>
+</head>
+
+<body>
+
+
+
+
+
+
+      <script>
+
+            var atter = "width";
+            var obj = {};
+            var attfn = "fn";
+            var att = {
+                  [atter]: 1,
+                  [obj]: "hello",
+                  [attfn]() {
+                        console.log("...")
+                  }
+            }
+            console.log(att)
+            att.fn();
+
+
+            function move(obj) {
+                  var defaultobj = {
+                        ease: "linear",
+                        duration: 1000
+                  }
+                  /*    var para = { 
+                           ease:obj.ease||defaultobj.ease,
+                           eadurationse:obj.duration||defaultobj.duration
+                     }  */
+                  var para = {}
+                  Object.assign(para,defaultobj, obj)
+                  console.log(para)
+                  console.log(defaultobj)
+                  console.log(obj)
+            }
+            move({
+                  ease: "easein",
+                  duration: 2000
+            })
+
+
+            function fn2(){ 
+                  console.log( arguments)
+            }
+            fn2(1,2,3,4,5)  
+
+            var arrows = (a,b)=>{return a+b} 
+            console.log( arrows(1,2))
+
+
+
+            /* 
+            *  异步编程 promise
+            * */
+            var p = new Promise((resolve ,reject )=>{
+                  console.log( "promise001")
+               return resolve("毛球！！")
+                 reject()
+                 console.log( "promise111")
+            })
+              //console.log( p )
+              .then((data)=>{
+                   console.log("then:"+data)     
+              })
+
+
+            //   var p2 = new promise((res,rej)=>{ 
+            //       res("成功")
+            //   })  
+            var wx = new Promise( (res,rej)=>{ 
+                  res("成功")
+            })
+            
+            var wx2 = wx.then(()=>{ 
+                    console.log(1)
+                 
+              })
+              .then(()=>{ 
+                    console.log(2)
+                    a
+              })
+              .then(()=>{ 
+                    console.log(3)
+              })
+
+              wx2.catch((err)=>{
+                    console.log(err)
+              })
+
+
+/* promise */
+      //   var wx3 =  new promise( (res,rej)=>{res() });
+        var wx5 = new promise( (res,rej)=>{ res() })
+     
+        .then(()=>{ 
+             console.log(1) 
+        })
+        .then(()=>{ 
+             return promise.resolve() })
+        .then(()=>{ 
+             console.log(2) 
+        })
+      </script>
+
+</body>
+
+</html>

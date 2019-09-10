@@ -66,8 +66,9 @@
     <div> 排序 : </div>
 
     <div style="text-align: right; padding-right: 300px;">
-        <div style="display: inline-block"> <a href="javascript:;" class="ba"> 从小到大排序</a><a href="javascript:;"
-                class="ba"> 打乱排序</a></div>
+        <div style="display: inline-block">
+            <a href="javascript:;" class="ba btn_d"> 从小到大排序</a>
+            <a href="javascript:;" class="ba btn_s"> 打乱排序</a></div>
     </div>
     <ul id="mk" class="clearfix">
         <li>
@@ -103,34 +104,82 @@
             <span>1</span>
         </li>
     </ul>
-
-
+    <div class="text-ten">
+        JS 去除非可见字符 阅读数 4508<br /> 我一直没有找到如何用正则表达式匹配到非可见字符的方法，于是自己想了一个方法去掉非可见字符思路：从asc码入手，
+    </div>
     <script>
-
-
+        var textTen = document.querySelector(".text-ten")
+        var textn = textTen.innerHTML;
+        var le = textn.replace(/\//, "")  //检索并替换
+        var le2 = le.replace(/<br>/, "")
+        console.log(le2) 
+    </script>
+    <script>
         var arrNum = ['1-办公', '2-桌面', '3-汽车', '4-汽车2', '5-棒球', '6-运动鞋', '7-游戏', '8-社区']
-
         var arrImg = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', 'car1.jpg', 'car2.jpg', 'car3.jpg', 'car4.jpg']
         var _img = document.querySelectorAll("#mk img")
         var _text = document.querySelectorAll("#mk span")
         var _btn1 = document.querySelectorAll(".ba")[0]
         var _btn2 = document.querySelectorAll(".ba")[1]
-
         console.log(_img)
         console.log(_text)
 
-
-        for (let i = 0; i < arrImg.length; i++) {
-
+        arrImg.forEach((item, i) => {
             _text[i].innerHTML = arrNum[i]
             _img[i].src = './images/' + arrImg[i]
-
         }
+        )
 
         arrNum.sort(function (a, b) { return a - b })
+        //sort() 方法用于对数组的元素进行排序。
         console.log(arrNum)
 
+        var btnDs = document.querySelector(".btn_d")
+        var btnSe = document.querySelector(".btn_s")
+        btnDs.onclick = function () {
 
+
+            /* 1 */
+            // arrNum.sort(function (a, b) { return a - b }).reverse()
+            // arrImg.sort(function (a, b) { return a - b }).reverse()
+
+            //console.log(arrNum)
+
+
+            /* 2 */
+            function indexIss(obj) {
+                obj.sort(function (x, y) {
+                    if (x % 2 == 0) return 1;
+                    if (x % 2 != 0) return -1;
+                });
+            }
+            indexIss(arrNum)
+            indexIss(arrImg)
+
+            arrImg.forEach((item, i) => {
+                _text[i].innerHTML = arrNum[i]
+                _img[i].src = './images/' + arrImg[i]
+            }
+            )
+        }
+        btnSe.onclick = function () {
+            /* 
+         * 打乱数组
+         * */
+
+
+            arrNum.sort(function () { return 0.5 - Math.random() })
+            
+            var str = arrImg.join();
+            arrImg.forEach((item, i) => {
+          
+                _text[i].innerHTML = arrNum[i]
+                _img[i].src = './images/' + arrImg[i]
+            })
+
+
+
+        }
 
         /* 联系 */
         //1排序
@@ -151,13 +200,6 @@
 
 
 
-<<<<<<< HEAD
-        /* 联系 */
-        //排序
-        //自定义图标形状
-        // 你的鼠标有多快
-=======
->>>>>>> 687df9cae9e244c883ceb575e6492f0f813cc00a
 
 
 
@@ -176,38 +218,6 @@
 
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* 99乘法表 */
-        function clcDisp(num) {
-            var str = '';
-            for (let i = 1; i <= num; i++) {
-                for (let j = 1; j <= num; j++) {
-                    if (i >= j) {
-                        str += i + 'x' + j + ' =' + i * j + '==>';
-                    }
-                }
-            }
-            console.log(str)
-        }
-      //  clcDisp(9)
-
-
-
->>>>>>> 687df9cae9e244c883ceb575e6492f0f813cc00a
     </script>
 
 
