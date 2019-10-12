@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <!--头部-->
+
+
+  <div id="list_main">
+    <div class="list_tit"><strong>検索結果</strong><a href="/">HOME</a> / 検索結果
+      <!-- /recruit/list.html -->
+      <form action="" method="get" onsubmit="return false" class="list_tit_form">
+        <!--  @change="change($event)"  -->
+        <!--     <input name="" type="text" v-model="reqData.keyWord" class="listinput" placeholder="家庭" />
+        <input name="search-btn" type="image" class="search-btn" src="./images/search-btn2.png" />   -->
+        <input name="" type="text" class="listinput" placeholder="家庭" />
+        <input name="search-btn" type="image" class="search-btn" src="./images/search-btn2.png" />
+        <p style="height: 20px; margin-top: 36px;"> </p>
+      </form>
+    </div>
+    <div class="list_content">
+      <!--左栏-->
+   
+      <!--右栏-->
+      <div id="list_rightside">
+        <div class="rightform">
+          <div class="select3 dowebok">
+            <span class="placeholder">並び替え</span>
+            <ul>
+              <li>新着順</li>
+              <li>時給順</li>
+              <li>月給順</li>
+              <li>日給順</li>
+            </ul>
+          </div>
+          1件〜100件を表示
+        </div>
+
+
+        <!--    <div class="index_textlist2_dl " v-for="item in listData">
+          <div class="dltext">{{ item.id }}</div>
+          <div class="dlico"><a href="/recruit/info.html">{{ item.industry }}</a></div>
+          <h2><a href="/recruit/info.html"> {{ item.title }}</a></h2>
+          <p>
+          </p>
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">{{ item.littleTitle }}</a></strong>
+              <span>{{ item.littleSite }}</span>
+              <span>{{ item.littleTimer }}</span>
+              <span>{{ item.littleIndustry }}</span>
+            </dd>
+          </dl>
+        </div> -->
+
+        <div class="index_textlist2_dl " v-for="(item,index) in currentPageData" :key="index">
+          <div class="dltext">{{ item.name }}</div>
+          <div class="dlico"><a href="/recruit/info.html">{{ item.count }}</a></div>
+
+        </div>
+
+
+        <!--         <div class="index_textlist2_dl">
+          <div class="dltext">1</div>
+          <div class="dlico"><a href="/recruit/info.html">弱电系统施工员</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">2</div>
+          <div class="dlico"><a href="/recruit/info.html">水电施工员</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">1</div>
+          <div class="dlico"><a href="/recruit/info.html">防水施工员</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">1</div>
+          <div class="dlico"><a href="/recruit/info.html">施工员</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">1</div>
+          <div class="dlico"><a href="/recruit/info.html">工程监理</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">2</div>
+          <div class="dlico"><a href="/recruit/info.html">电子维修工程师</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">0</div>
+          <div class="dlico"><a href="/recruit/info.html">电子工程师</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">2</div>
+          <div class="dlico"><a href="/recruit/info.html">设备电路工程经理</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div>
+
+
+        <div class="index_textlist2_dl">
+          <div class="dltext">1</div>
+          <div class="dlico"><a href="/recruit/info.html">室内设计师</a></div>
+          <h2><a href="/recruit/info.html">施工管理・システム調整</a></h2>
+
+          <p>
+          </p>
+
+          <dl>
+            <dt><a href="/recruit/info.html"><img src="picture/pic1.png" /></a></dt>
+            <dd>
+              <strong><a href="/recruit/info.html">株式会社日本フォトサイエンス</a></strong>
+              <span>東京都</span>
+              <span>13:30～翌4:30</span>
+              <span>IT業</span>
+            </dd>
+          </dl>
+        </div> -->
+
+
+
+        <div class="fenye">
+          <a href="#" @click="prevPage()">
+            < 前へ</a> <a href="#" class="btn-a"  v-for="(item,index) in totalPage" >{{item}}
+          </a>
+          …
+          <span>第{{currentPage}}页/共{{totalPage}}页</span>
+          <a href="#" @click="nextPage()">次へ ></a>
+        </div>
+
+
+
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <script>
+
+    /*  var list = new Vue({
+       el: "#list_main",
+       data: {
+         listData: [],//传过来的所有数据 职位列表
+         regionList: [],//地区列表
+         companyList: [],//公司列表
+         text1: '',
+         text2: '',
+         //筛选条件
+         reqData: {
+           region: '',
+           company: '',
+           arr: [],  //可勾选列表
+           keyWord: '',  // 搜索关键字
+           page: 1,     // 现在的页数
+           pageSize: 10  // 每页显示几个
+         }
+       },
+       methods: {
+         //请求筛选数据
+         getPageData() {
+           console.log(this.reqData)
+         }
+       },
+       watch: {
+         //监听筛选变化
+         reqData: {
+           handler() {
+             this.getPageData()
+           },
+           deep: true
+         }
+       }
+     })
+    */
+
+
+  </script>
+  <script>
+
+
+    let productList = [];
+    for (let i = 0; i < 90; i++) {
+      productList.push({
+        name: "第" + i + "瓶奶酪",
+        count: Math.random() * 100
+      });
+    }
+    console.log(productList)
+
+    var listWarp = new Vue({
+      el: "#list_main",
+      data() {
+        
+  
+        return {
+          productList, //所有数据
+          totalPage: 1, // 统计一共页数，默认为1
+          currentPage: 1, //当前页数 ，默认为1
+          pageSize: 10, // 每页显示数量
+          currentPageData: [] //当前页显示内容
+        }
+
+
+      },
+      mounted() {
+        //计算一共有几页
+        this.totalPage = Math.ceil(this.productList.length / this.pageSize)
+        //计算得0 时设置为1
+        this.totalPage = this.totalPage == 0 ? 1 : this.totalPage
+        this.getCurrentPageData();
+        this.listPage();
+
+      },
+      methods: {
+        //设置当前页面数据，对数组操作的截取规则为【0~9】，【10~20】.. 
+        // 当currentPage 为1 时，我们显示(0*pageSize+1)-1*pageSize,当currentPage为2时，我们显示(1*pageSize+1)-2*pageSize...
+        getCurrentPageData() {
+          let begin = (this.currentPage - 1) * this.pageSize
+          let end = this.currentPage * this.pageSize
+          this.currentPageData = this.productList.slice(begin, end)   //slice() 方法可从已有的数组中返回选定的元素。
+        },
+        //list 
+        listPage(e) {
+          let mm = document.querySelectorAll(".btn-a")
+          console.log(this)  
+          
+ 
+
+        },
+     
+        //上一页
+        prevPage() {
+          if (this.currentPage === 1) {
+            return false
+          }
+          this.currentPage--;
+          this.getCurrentPageData();
+        },
+        //下一页
+        nextPage() {
+          if (this.currentPage === this.totalPage) {
+            return false
+          }
+          this.currentPage++;
+          this.getCurrentPageData();
+        }
+      }
+
+
+    })   
+  </script>
+
+
+
+
+
+  <!--底部 end-->
+
+
+</body>
+
+</html>

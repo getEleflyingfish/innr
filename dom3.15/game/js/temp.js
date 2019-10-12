@@ -1,0 +1,4 @@
+﻿
+
+
+export var a = 'jspang';

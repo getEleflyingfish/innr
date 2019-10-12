@@ -1,0 +1,33 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+ *{padding: 0px ; margin: 0px; list-style: none;}
+	.tabMenu{width:1140px;  margin:50px auto 0 auto;} /*tab总宽*/
+	.tabMenu ul{display: block; overflow: hidden; width:1140px; height:44px; background: #eee;}/*tab标题*/
+	.tabMenu ul li{ cursor:pointer; display: block; float:right; padding:2px 1em; text-align: center; line-height: 34px;font-size:16px; }
+	.tabMenu ul li.active{color:#0099FF; border-bottom: solid 2px #0099FF;}
+	.tabMenu {}
+	.tabSide{display: none; padding:10px 0px; line-height:26px; white-space:pre-wrap; word-break:break-all;width:1140px;}
+	.tabMenu dl dt.active{ display: block; padding:0px; line-height:26px; white-space:pre-wrap; word-break:break-all;width:1140px;}/*tab正文*/
+	
+	
+.tab_a1{ width:1140px; height:100px; background: #9c0; clear:both;}
+.tab_a2{ width:1140px; height:100px; background: #03c; clear:both;}
+.tab_a3{ width:1140px; height:100px; background: #c30; clear:both;}
+
+.tab_b1{ width:1140px; height:100px; background: #3c0; clear:both;}
+.tab_b2{ width:1140px; height:100px; background: #30c; clear:both;}
+.tab_b3{ width:1140px; height:100px; background: #F2a; clear:both;}
+
+.tab_c1{ width:1140px; height:100px; background: #fc9; clear:both;}
+.tab_c2{ width:1140px; height:100px; background: #9f9; clear:both;}
+.tab_c3{ width:1140px; height:100px; background: #cf9; clear:both;}
+
+.tab_d1{ width:1140px; height:100px; background: #cf9; clear:both;}
+.tab_d2{ width:1140px; height:100px; background: #99f; clear:both;}
+.tab_d3{ width:1140px; height:100px; background: #fc9; clear:both;}
+
+.clear10 { clear:both; padding:10px;}
+.clear20 { clear:both; padding:20px;}
+.clear30 { clear:both; padding:30px;}
+.clear40 { clear:both; padding:40px;}
