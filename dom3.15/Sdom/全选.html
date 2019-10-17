@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        input[type="checkbox"] {
+            width: 50px;
+            height: 25px;
+            display: block;
+        }
+
+        label input[type="checkbox"] {
+            display: inline-block;
+        }
+    </style>
+
+    <div class="oo">
+        <input type="checkbox" class="1">
+        <input type="checkbox" class="2">
+        <input type="checkbox" class="3">
+    </div>
+
+    <label for="mm">全选<input type="checkbox" id="mm"></label>
+
+
+
+
+    <script>
+
+
+        /*     function $(id) {
+                var obj = document.querySelectorAll(id);
+                return obj.length > 1 ? obj : obj[0];
+            } */
+
+
+        var oInput = document.querySelector(".oo").querySelectorAll("input");
+        var oInputAll = document.querySelector("#mm");
+
+        var len = oInput.length
+        for (var i = 0; i < len; i++) {
+            oInput[i].index = i;
+            oInput[i].onclick = function () {
+                // console.log(this)
+                for (var i = 0; i < len; i++) {
+                    if (!oInput[i].checked == this.checked) {
+                        console.log(!oInput[i].checked)
+                        console.log(this.checked)
+                        console.log("1....")
+                        oInputAll.checked = false;
+                        return
+                    } else {
+                        if (oInput[i].checked) {
+                            oInputAll.checked = true;
+                            console.log("5")
+                        } else {
+                            oInputAll.checked = false;
+                            console.log("6")
+                        }
+
+                    }
+                }
+            };
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>index</title>
+    <!--防止IE进入怪异模式-->
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/rest.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+    <!-- <script type="text/javascript" src="js/jquery1.42.min.js"></script> -->
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+
+</head>
+
+<body>
+    <style>
+        .cha {
+            font-size: 30px;
+            color: red;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        table {
+            border: 10px solid #63626288;
+            width: 300px;
+        }
+
+        table tr td {
+            border: 1px solid red;
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            text-indent: 20px;
+            border-bottom: 0 !important;
+        }
+
+        table tr td:last-child {
+            border-bottom: 1px solid red !important;
+        }
+
+        .journalism {
+            float: left;
+        }
+    </style>
+
+    <div class="journalism">
+        <div class="cha"> x</div>
+        <table>
+            <tr>
+                <td>新版</td>
+                <td>《鹿鼎记》</td>
+                <td>即将开拍</td>
+                <td>7个老婆全是熟人，</td>
+                <td>网友：张一山惨了</td>
+            </tr>
+        </table>
+    </div>
+    <div class="journalism">
+        <div class="cha"> x</div>
+        <table>
+            <tr>
+                <td>比释小龙</td>
+                <td>还火的武打童星</td>
+                <td>，入狱22年，</td>
+                <td>如今带手铐脚</td>
+                <td>镣参加父亲葬礼</td>
+            </tr>
+        </table>
+    </div>
+    <div class="journalism">
+        <div class="cha"> x</div>
+        <table>
+            <tr>
+                <td>当代“梦露”，</td>
+                <td>身材曲线曼妙，</td>
+                <td>152斤的</td>
+                <td>体重展现</td>
+                <td>别样美</td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+    <script>
+
+        /* 
+           这个dom 使用了，
+           1.事件代理  
+           2.定时器 setTimeout 模拟 无限递归
+         */
+
+        //事件代理
+        var body = document.querySelector("body");
+        body.addEventListener('click', function (ev) {
+            //   console.log(ev)
+            var path = ev.path;
+            //  console.log(path)
+            if (path[0].className === 'cha') {
+                path[1].style.display = 'none';
+            }
+        })
+
+
+
+        var tableTd = document.querySelectorAll("td");
+        console.log(tableTd)
+
+        function chongfu() {
+            for (let i = 0; i < tableTd.length; i++) {
+                tableTd[i].style.border = " 1px solid " + initl() + " ";
+            }
+        }
+
+
+        function initl() {
+            var r = parseInt(Math.random() * 256);
+            var g = parseInt(Math.random() * 256);
+            var b = parseInt(Math.random() * 256);
+            var color = ' rgb(' + r + ',' + g + ',' + b + ') ';
+            console.log(color)
+            return color;
+        }
+
+
+        var cletimer = null;
+        var num = 0;
+        function redo() {
+            clearTimeout(cletimer)
+            cletimer = setTimeout(function () {
+                chongfu()
+                num++
+                console.log(num)
+                redo()
+            }, 1000)
+        }
+        redo()
+
+
+
+
+    </script>
+</body>
+
+</html>
